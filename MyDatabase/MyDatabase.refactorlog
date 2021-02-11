@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="964ad816-6261-4f92-8424-396caa269fb9" ChangeDateTime="12/18/2020 15:51:19">
+    <Property Name="ElementName" Value="[dbo].[STAFF_LIST].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[STAFF_LIST]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="STAFF_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c34eee6c-472e-48b2-becf-daaa48b06473" ChangeDateTime="12/18/2020 15:51:24">
+    <Property Name="ElementName" Value="[dbo].[STAFF_LIST].[PID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[STAFF_LIST]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="STAFF_PID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="8077dedf-bb51-4921-8cb2-da4fc76be565" ChangeDateTime="12/18/2020 15:53:49">
+    <Property Name="ElementName" Value="[dbo].[STAFF_PERMISSIONS].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[STAFF_PERMISSIONS]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PERMISSION_ID" />
+  </Operation>
+</Operations>

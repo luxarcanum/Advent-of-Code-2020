@@ -1,0 +1,25 @@
+﻿CREATE PROCEDURE [dbo].[PopulateLookupRole]
+
+AS
+
+	MERGE  [LOOKUP_ROLE] AS [TARGET]
+	USING (
+		VALUES 
+			('N/A','TRUE'),('USER','TRUE'),('SUPPORT','TRUE'),('ADMIN','TRUE')
+		) AS [SOURCE] (	
+			[ROLE_NAME],
+			[ROLE_ACTIVE]
+			)
+	ON ([TARGET].[ROLE_NAME] = [SOURCE].[ROLE_NAME])
+	WHEN NOT MATCHED THEN 
+		INSERT ( 
+			[ROLE_NAME],
+			[ROLE_ACTIVE]
+			)
+		VALUES (
+			[SOURCE].[ROLE_NAME], 
+			[SOURCE].[ROLE_ACTIVE]
+			)
+		;
+
+RETURN 0

@@ -1,0 +1,102 @@
+﻿<UserControl x:Class = "MVVMDemo.Views.StudentView" 
+    xmlns = "http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x = "http://schemas.microsoft.com/winfx/2006/xaml" 
+    xmlns:mc = "http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d = "http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local = "clr-namespace:MVVMDemo.Views" 
+    xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel" 
+    xmlns:theme = "clr-namespace:MVVMDemo.Accessibility" 
+    mc:Ignorable = "d" 
+    d:DesignHeight = "300" d:DesignWidth = "400">
+
+    <Grid Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}" Margin="5,5,5,5" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="40*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+        </Grid.RowDefinitions>
+
+        <!--<Menu x:Name="menu" HorizontalAlignment="Stretch" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="3" >
+            <MenuItem x:Name="MnuFirstItem" Header="First" Height="24" Width="50" />
+            <MenuItem x:Name="MnuSecondItem" Header="Second" Height="24" Width="50" />
+            <MenuItem x:Name="MnuthirdItem" Header="Third" Height="24" Width="50" />
+            <MenuItem x:Name="MnuAccessibility" Header="Accessibility" Height="24" Width="90"  >
+                <MenuItem Header="Grey" Click="mnuGreyTheme_Click" />
+                <MenuItem Header="Red" Click="mnuRedTheme_Click" />
+                <MenuItem Header="Green" Click="mnuGreenTheme_Click" />
+                <MenuItem Header="Blue" Click="mnuBlueTheme_Click"  />
+                <Separator />
+                <MenuItem Header="System Default" Click="mnuWhiteTheme_Click" />
+            </MenuItem>
+        </Menu>-->
+
+        <Border BorderBrush="#032B4F" BorderThickness="1,1,4,4" CornerRadius="10" HorizontalAlignment="Stretch" Margin="5,5,7,0" Grid.Column="0" Grid.Row="1"  Grid.ColumnSpan="3" Grid.RowSpan="2" >
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <!--<GradientStop Color="{Binding Color1, Mode=OneWay}" Offset="0.0" />
+                    <GradientStop Color="{Binding Color2, Mode=OneWay}" Offset="0.5" />
+                    <GradientStop Color="{Binding Color3, Mode=OneWay}" Offset="1.0" />-->
+                    <GradientStop Color="{DynamicResource Colour1}"  Offset="0.0" />
+                    <GradientStop Color="{DynamicResource Colour2}" Offset="0.5" />
+                    <GradientStop Color="{DynamicResource Colour3}" Offset="1.0" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <TextBlock x:Name="tbRow1"  Grid.Column="0" Grid.Row="1" Text = "One" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow2" Grid.Column="1" Grid.Row="1" Text = "Two" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow3"  Grid.Column="2" Grid.Row="1" Text = "Three" Margin="5,5,5,5" />
+
+        <TextBlock x:Name="tbRow4"  Grid.Column="0" Grid.Row="2" Text = "Four" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow5"  Grid.Column="1" Grid.Row="2" Text = "Five" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow6" Grid.Column="2" Grid.Row="2" Text = "Six" Margin="5,5,5,5"  />
+
+        <!--<TextBlock x:Name="tbRow7"  Grid.Column="0" Grid.Row="3" Text = "Seven" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow8"  Grid.Column="1" Grid.Row="3" Text = "Eight" Margin="5,5,5,5" />
+        <TextBlock x:Name="tbRow9" Grid.Column="2" Grid.Row="3" Text = "Nine" Margin="5,5,5,5" />-->
+
+        <!--<DataGrid ItemsSource="{Binding Students}" Grid.Column="1" Grid.Row="2" />-->
+        <!--<DataGrid HorizontalAlignment="Stretch"  Margin="15,10,15,15" VerticalAlignment="Stretch" FontWeight="Normal" VerticalGridLinesBrush="#FFD1D1D1" HorizontalGridLinesBrush="#FFD1D1D1" AlternatingRowBackground="WhiteSmoke"  AlternationCount="2" IsReadOnly="True" Grid.Row="2"  Grid.ColumnSpan="4" Grid.Column="0" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Visible"  ScrollViewer.VerticalScrollBarVisibility="Auto"  ItemsSource = "{Binding Path = Students}">
+            -->
+        <DataGrid ItemsSource = "{Binding Path = Students}" HorizontalAlignment="Stretch"  Margin="15,10,15,15" VerticalAlignment="Stretch" FontWeight="Normal" 
+                  Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Full Name" Binding="{Binding FullName}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--<StackPanel HorizontalAlignment = "Left">
+
+            <ItemsControl ItemsSource = "{Binding Path = Students}">
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation = "Horizontal">
+                            <TextBox Text = "{Binding Path = FirstName, Mode = TwoWay}" 
+                        Width = "100" Margin = "3 5 3 5"/>
+
+                            <TextBox Text = "{Binding Path = LastName, Mode = TwoWay}" 
+                        Width = "100" Margin = "0 5 3 5"/>
+
+                            <TextBlock Text = "{Binding Path = FullName, Mode = OneWay}" 
+                        Margin = "0 5 3 5"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+        </StackPanel>-->
+    </Grid>
+
+</UserControl>

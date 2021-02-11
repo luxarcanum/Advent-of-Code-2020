@@ -1,0 +1,43 @@
+﻿CREATE FUNCTION [dbo].[GetUserListBySite]
+(	
+	@inSiteID VARCHAR(3)
+)
+RETURNS @staffList TABLE  (
+	[USER_PID]	INT,
+	[USER_NAME]	VARCHAR(50),
+	[ROLE_NAME]	VARCHAR(50),
+	[TEAM_NAME]	VARCHAR(6),
+	[SITE_NAME]	VARCHAR(3)
+	)
+AS
+BEGIN
+	DECLARE
+		@siteID VARCHAR(3) = @inSiteID;
+	
+	INSERT INTO @staffList (
+		[USER_PID], 
+		[USER_NAME], 
+		[ROLE_NAME], 
+		[TEAM_NAME], 
+		[SITE_NAME]
+		)
+	SELECT
+		[USER_PID], 
+		[USER_NAME], 
+		[ROLE_NAME], 
+		[TEAM_NAME], 
+		[SITE_NAME]
+	FROM 
+		[ViewUserList]
+	WHERE
+		[SITE_NAME] = @siteID
+	ORDER BY 
+		[SITE_NAME],
+		[TEAM_NAME], 
+		[USER_PID], 
+		[USER_NAME], 
+		[ROLE_NAME]
+		;
+
+	RETURN;
+END

@@ -1,0 +1,4 @@
+﻿CREATE VIEW [dbo].[ViewLookupRole]
+	AS 
+		SELECT [ROLE_NAME], [ROLE_ACTIVE]
+		FROM [LOOKUP_ROLE]

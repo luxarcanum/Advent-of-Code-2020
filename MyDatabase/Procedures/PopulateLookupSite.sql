@@ -1,0 +1,25 @@
+﻿CREATE PROCEDURE [dbo].[PopulateLookupSite]
+
+AS
+
+	MERGE  [LOOKUP_SITE] AS [TARGET]
+	USING (
+		VALUES 
+			('N/A','TRUE'),('BGC','TRUE'),('DDC','FALSE'),('EDH','TRUE'),('LGB','TRUE'),('MCC','TRUE')
+		) AS [SOURCE] (	
+			[SITE_NAME],
+			[SITE_ACTIVE]
+			)
+	ON ([TARGET].[SITE_NAME] = [SOURCE].[SITE_NAME])
+	WHEN NOT MATCHED THEN 
+		INSERT ( 
+			[SITE_NAME],
+			[SITE_ACTIVE]
+			)
+		VALUES (
+			[SOURCE].[SITE_NAME], 
+			[SOURCE].[SITE_ACTIVE]
+			)
+		;
+
+RETURN 0
