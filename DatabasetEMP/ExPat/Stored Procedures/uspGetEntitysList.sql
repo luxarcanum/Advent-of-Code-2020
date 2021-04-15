@@ -1,0 +1,10 @@
+﻿CREATE PROCEDURE [ExPat].[uspGetEntitysList]
+
+AS
+BEGIN
+SET NOCOUNT ON
+
+SELECT * FROM lst.Entity
+ORDER BY EntityName
+
+END

@@ -43,7 +43,6 @@ namespace MyConsoleApp.Advent2020
 
             // Part 2 find matching answers in ALL rows of Entry
 
-
             int result2 = 0;
             foreach (string entry in entries)
             {
@@ -60,7 +59,6 @@ namespace MyConsoleApp.Advent2020
                         atoz[item] = atoz[item] + 1;
                     }
                 }
-                var xx = atoz.Where(x => x.Value == individuals.Count()).Count();
                 result2 += atoz.Where(x => x.Value == individuals.Count()).Count();
             }
             Console.WriteLine("Sum Total: " + result2);

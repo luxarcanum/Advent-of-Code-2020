@@ -14,6 +14,5 @@ namespace MyConsoleApp.Utilities
             }
             return result;
         }
-
     }
 }

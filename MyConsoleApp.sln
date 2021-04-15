@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyConsoleApp", "MyConsoleAp
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "MyDatabase", "MyDatabase\MyDatabase.sqlproj", "{D98C3F17-9DC4-4EDC-81C1-B180ECE8921E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMDemo", "MVVMDemo\MVVMDemo.csproj", "{0E23E5F6-8EBF-4C91-9B29-DBD3FDAA76FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVVMDemo", "MVVMDemo\MVVMDemo.csproj", "{0E23E5F6-8EBF-4C91-9B29-DBD3FDAA76FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

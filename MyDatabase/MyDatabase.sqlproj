@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\DATA_USERS.sql" />
-    <Build Include="Tables\LOOKUP_PERMISSIONS.sql" />
     <Build Include="Tables\TABLE_TIME.sql" />
     <Build Include="Tables\TABLE_NUMBERS.sql" />
     <Build Include="Tables\TABLE_DATES.sql" />

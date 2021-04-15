@@ -3,16 +3,28 @@ using System.Collections.Generic;
 
 namespace MyConsoleApp.Advent2020
 {
-    public class Dayxx_temp
+    public class Day11_AirportSeats
     {
-        public static bool DayXX()
+        public static bool Day11()
         {
-            Console.WriteLine("Starting Advent of Code Day 10");
+            Console.WriteLine("Starting Advent of Code Day 11");
 
-            string inputFile = @"D:\Users\U.6074887\Advent2020 Input Files\Day10.txt";
+            string inputFile = @"D:\Users\U.6074887\Advent2020 Input Files\Day11.txt";
             string dataSet = @"";
 
             dataSet = Utilities.FileUtilities.ReadTxtToString(inputFile);
+
+            dataSet = @"";
+            dataSet = @"L.LL.LL.LL
+LLLLLLL.LL
+L.L.L..L..
+LLLL.LL.LL
+L.LL.LL.LL
+L.LLLLL.LL
+..L.L.....
+LLLLLLLLLL
+L.LLLLLL.L
+L.LLLLL.LL";
 
             string[] fullEntryDiv = { "\n" };
             string[] rawEntries = dataSet.Split(fullEntryDiv, System.StringSplitOptions.RemoveEmptyEntries);

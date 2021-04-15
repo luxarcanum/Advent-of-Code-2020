@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [ExPat]
+    AUTHORIZATION [dbo];
+
