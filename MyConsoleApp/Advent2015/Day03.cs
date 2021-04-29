@@ -43,14 +43,14 @@ namespace Advent2015
         {
             Console.WriteLine("Starting Advent of Code 2015 Day 03");
             Stopwatch sw = new Stopwatch();
-            sw.Start();
+
             // Read File
             string inputFile = @"D:\Users\U.6074887\Advent2020 Input Files\2015-03.txt";
             string dataSet = @"";
             // Parse File
             dataSet = MyConsoleApp.Utilities.FileUtilities.ReadTxtToString(inputFile);
             char[] directions = dataSet.ToCharArray();
-
+            sw.Start();
             int x = 0;
             int y = 0;
             List<Map> route = new List<Map>();
@@ -73,20 +73,20 @@ namespace Advent2015
                 }
 
             }
-            int maxX = route.Max(x => x.CoordX);
-            int minX = route.Min(x => x.CoordX);
-            int maxY = route.Max(x => x.CoordY);
-            int minY = route.Min(x => x.CoordY);
-            int maxP = route.Max(x => x.Pressies);
-            int minP = route.Min(x => x.Pressies);
+            //int maxX = route.Max(x => x.CoordX);
+            //int minX = route.Min(x => x.CoordX);
+            //int maxY = route.Max(x => x.CoordY);
+            //int minY = route.Min(x => x.CoordY);
+            //int maxP = route.Max(x => x.Pressies);
+            //int minP = route.Min(x => x.Pressies);
 
             sw.Stop();
             // Write Result
             Console.WriteLine("Total houses visited is {0}.", route.Count);
             Console.WriteLine("Elapsed: {0}", sw.Elapsed);
 
-            sw.Restart();
             #region Part 2
+            sw.Restart();
             x = 0;
             y = 0;
             int rx = 0;
