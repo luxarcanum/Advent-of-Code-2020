@@ -49,7 +49,7 @@ namespace Advent2015
             //If your secret key is pqrstuv, the lowest number it combines with to make an MD5 hash starting with five zeroes is 1048970; that is, the MD5 hash of pqrstuv1048970 looks like 000006136ef....sw.Start();
 
             string inputKey = "bgvyzdsv";
-            //inputKey = "abcdef609043";
+            //inputKey = "iwrupvqb";
             sw.Start();
             //string hash = CreateMD5Hash(inputKey);
             //Console.WriteLine("Hash {0}.", hash);
