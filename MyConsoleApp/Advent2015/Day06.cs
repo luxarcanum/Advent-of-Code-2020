@@ -74,14 +74,12 @@ namespace Advent2015
                         lightArray[x, y] = lightSwitch;
                     }
                 }
-
-                //ToggleLights(lightArray, toggle, x1, y1, x2, y2);
             }
 
             int count = 0;
             foreach (var item in lightArray)
             {
-                if (item == true) count++;
+                if (item) count++;
             }
 
             sw.Stop();
@@ -143,7 +141,6 @@ namespace Advent2015
                     }
                 }
 
-                //ToggleLights(lightArray, toggle, x1, y1, x2, y2);
             }
 
             int count2 = 0;
@@ -152,32 +149,12 @@ namespace Advent2015
                 count2 += item;
             }
 
-            //too low 14190930
-            // 14190930
-
             sw.Stop();
             // Write Result
             Console.WriteLine("Brightness on {0}", count2);
             Console.WriteLine("Elapsed: {0}", sw.Elapsed);
             #endregion
         }
-
-        private static void ToggleLights(bool[,] lightArray, int toggle, int x1, int y1, int x2, int y2)
-        {
-            for (int x = x1; x < x2; x++)
-            {
-                for (int y = y1; y < y2; y++)
-                {
-                    bool lightSwitch = lightArray[x, y];
-                    if (toggle == 0) lightSwitch = false;
-                    if (toggle == 1) lightSwitch = true;
-                    if (toggle == 2) lightSwitch = !lightSwitch;
-
-                    lightArray[x, y] = lightSwitch;
-                }
-            }
-        }
-
 
     }
 }

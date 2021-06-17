@@ -7,14 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Remove="Styles\Default.xaml" />
     <Page Remove="Styles\FontSize12.xaml" />
     <Page Remove="Styles\FontSize14.xaml" />
     <Page Remove="Styles\FontSize16.xaml" />
-    <Page Remove="Styles\stBlue.xaml" />
-    <Page Remove="Styles\stGreen.xaml" />
-    <Page Remove="Styles\stGrey.xaml" />
-    <Page Remove="Styles\stRed.xaml" />
+    <Page Remove="Styles\FontSize18.xaml" />
+    <Page Remove="Styles\FontSize20.xaml" />
+    <Page Remove="Styles\FontSize22.xaml" />
+    <Page Remove="Styles\FontSize24.xaml" />
+    <Page Remove="Styles\FontSize26.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +33,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Styles\FontSize26.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Styles\FontSize24.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Styles\FontSize22.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Styles\FontSize20.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Include="Styles\FontSize18.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </None>
     <None Include="Styles\FontSize16.xaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -48,30 +73,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Include="Styles\stBlue.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Content Include="Styles\Default.xaml">
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\ThemeLight.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Include="Styles\stGreen.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\stRed.xaml">
+    </Page>
+    <Page Update="Styles\ThemeDefault.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Styles\stGrey.xaml">
+    </Page>
+    <Page Update="Styles\ThemeHighContrast.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Page>
   </ItemGroup>
 
 </Project>

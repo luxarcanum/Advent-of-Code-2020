@@ -13,7 +13,10 @@ namespace MyConsoleApp
             //Advent2015.Advent03.Day03();
             //Advent2015.Advent04.Day04();
             //Advent2015.Advent05.Day05();
-            Advent2015.Advent06.Day06();
+            //Advent2015.Advent06.Day06();
+            //Advent2015.Advent07.Day07();
+            //Advent2015.Advent08.Day08();
+            Advent2015.Advent09.Day09();
             //Advent2020.Day01_Expenses.Day01();
             //Advent2020.Day02_Passwords.Day02();
             //Advent2020.Day03_Tobbogan.Day03();

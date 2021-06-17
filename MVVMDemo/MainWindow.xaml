@@ -5,33 +5,113 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMDemo"
         xmlns:views = "clr-namespace:MVVMDemo.Views"
+        xmlns:viewModels="clr-namespace:MVVMDemo.ViewModel" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <StackPanel>
-            <DockPanel>
-                <Menu x:Name="menu" HorizontalAlignment="Stretch" Height="24" VerticalAlignment="Top" Grid.ColumnSpan="3" >
-                    <MenuItem x:Name="MnuFirstItem" Header="First" Height="24" Width="50" />
-                    <MenuItem x:Name="MnuSecondItem" Header="Second" Height="24" Width="50" />
-                    <MenuItem x:Name="MnuthirdItem" Header="Third" Height="24" Width="50" />
-                    <MenuItem x:Name="MnuAccessibility" Header="Accessibility" Height="24" Width="90"  >
-                        <MenuItem x:Name="MnuFontsize" Header="Font Size" Height="24" Width="90"  >
-                            <MenuItem Header="12" Click="mnuFontSize12_Click" />
-                            <MenuItem Header="14" Click="mnuFontSize14_Click" />
-                            <MenuItem Header="16" Click="mnuFontSize16_Click" />
-                        </MenuItem>
-                        <Separator />
-                        <MenuItem Header="Grey" Click="mnuGreyTheme_Click" />
-                        <MenuItem Header="Red" Click="mnuRedTheme_Click" />
-                        <MenuItem Header="Green" Click="mnuGreenTheme_Click" />
-                        <MenuItem Header="Blue" Click="mnuBlueTheme_Click"  />
-                        <Separator />
-                        <MenuItem Header="System Default" Click="mnuWhiteTheme_Click" />
-                    </MenuItem>
-                </Menu>
-            </DockPanel>
-            <views:StudentView x:Name = "StudentViewControl" Loaded = "StudentViewControl_Loaded"/>
-        </StackPanel>
+        Title="MainWindow" WindowStartupLocation="CenterScreen" Height="800" Width="1000">
 
+    <Window.DataContext>
+        <viewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <!--<DataTemplate DataType="{x:Type viewModels:NavigationViewModel}">
+            <views:NavigationView/>
+        </DataTemplate>-->
+
+        <!--<DataTemplate DataType="{x:Type viewModels:SettlementsViewModel}">
+            <views:SettlementsView/>
+        </DataTemplate>-->
+        <!--<DataTemplate DataType="{x:Type viewModels:LifetimeViewModel}">
+            <views:LifetimeView/>
+        </DataTemplate>-->
+
+        <!--<DataTemplate DataType="{x:Type viewModels:InteractionNoGiftsViewModel}">
+            <views:InteractionNoGiftsView/>
+        </DataTemplate>-->
+        <!--<DataTemplate DataType="{x:Type viewModels:InteractionWithGiftsViewModel}">
+            <views:InteractionWithGiftsView/>
+        </DataTemplate>-->
+
+        <!--<DataTemplate DataType="{x:Type viewModels:AdditionalInterestGeneralViewModel}">
+            <views:AdditionalInterestGeneralView/>
+        </DataTemplate>-->
+        <!--<DataTemplate DataType="{x:Type viewModelsAdditionalInterestRepaymentViewModel}">
+            <views:AdditionalInterestRepaymentView/>
+        </DataTemplate>-->
+
+        <!--<DataTemplate DataType="{x:Type viewModels:AccumulationViewModel}">
+            <views:AccumulationView/>
+        </DataTemplate>-->
+
+        <DataTemplate DataType="{x:Type viewModels:StudentViewModel}">
+            <views:StudentView/>
+        </DataTemplate>
+
+    </Window.Resources>
+
+    <Grid Style="{DynamicResource GridMainwindow}">
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" x:Name="menu" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                <MenuItem x:Name="mnuHome" Header="Home" 
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="navigation" />
+
+                <MenuItem x:Name="mnuPages" Header="Pages">
+                    <MenuItem x:Name="mnuStudents" Header="Students"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="students"/>
+                    <MenuItem x:Name="mnuFontAwesome" Header="FontAwesome"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="fontAwesome"/>
+                </MenuItem>
+
+
+                <MenuItem x:Name="mnuSettings" Header="Settings">
+                    <MenuItem x:Name="mnuThemes" Header="Themes">
+                        <MenuItem x:Name="mnuDefaultTheme" Header="Default (light) Theme" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="themeLight"/>
+                        <MenuItem x:Name="mnuDarkTheme" Header="Dark Theme" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="themeDark"/>
+                        <MenuItem x:Name="mnuHighContrastTheme" Header="High Contrast" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="themeHighContrast"/>
+                    </MenuItem>
+                    <MenuItem x:Name="mnuFontSize" Header="FontSize">
+                        <MenuItem x:Name="mnuFontDefault" Header="Font Size: 16" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font16"/>
+                        <MenuItem x:Name="mnuFont18" Header="Font Size: 18" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font18"/>
+                        <MenuItem x:Name="mnuFont20" Header="Font Size: 20" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font20"/>
+                        <MenuItem x:Name="mnuFont22" Header="Font Size: 22" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font22"/>
+                        <MenuItem x:Name="mnuFont24" Header="Font Size: 24" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font24"/>
+                        <MenuItem x:Name="mnuFont26" Header="Font Size: 26" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="Font26"/>
+                    </MenuItem>
+                </MenuItem>
+
+                <MenuItem x:Name="mnuClose" Header="Close"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="close"/>
+            </Menu>
+
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Padding="20">
+                <ContentControl Content="{Binding CurrentViewModel}" />
+            </ScrollViewer>
+
+        </DockPanel>
     </Grid>
+
+
 </Window>
