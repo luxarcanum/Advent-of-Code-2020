@@ -4,14 +4,100 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVMDemo.Views"
-             xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModel"
+             xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
              xmlns:data = "clr-namespace:MVVMDemo.Models" 
              xmlns:vml = "clr-namespace:MVVMDemo.VML"
              vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
-             xmlns:validators="clr-namespace:MVVMDemo.Validation"
+             xmlns:fa5="http://schemas.fontawesome.com/icons/"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+    <Grid Style="{DynamicResource GridContent}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Lifetime Grossing -->
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+                    <Label Content="Students demo page"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="students">
+                        <TextBlock ToolTip="Student MVVM demo." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Solid_GraduationCap" FontSize="50" Foreground="Black"/>
+                            <Run Text="Student MVVM demo" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+                    <Label Content="FontAwesome"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="fontAwesome">
+                        <TextBlock ToolTip="FontAwesome Demo Page." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Brands_FontAwesome" FontSize="50" Foreground="Black"/>
+                            <Run Text="Font Awesome" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+
+            <Border Style="{DynamicResource ContentBorder}">
+                <StackPanel Orientation="Vertical"
+                            Style="{DynamicResource ContainerStackPanel}">
+
+                </StackPanel>
+            </Border>
+        </StackPanel>
 
     </Grid>
 </UserControl>

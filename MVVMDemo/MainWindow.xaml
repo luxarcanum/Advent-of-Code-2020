@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MVVMDemo"
         xmlns:views = "clr-namespace:MVVMDemo.Views"
-        xmlns:viewModels="clr-namespace:MVVMDemo.ViewModel" 
+        xmlns:viewModels="clr-namespace:MVVMDemo.ViewModels" 
         mc:Ignorable="d"
         Title="MainWindow" WindowStartupLocation="CenterScreen" Height="800" Width="1000">
 
@@ -14,34 +14,13 @@
     </Window.DataContext>
 
     <Window.Resources>
-        <!--<DataTemplate DataType="{x:Type viewModels:NavigationViewModel}">
+        <DataTemplate DataType="{x:Type viewModels:NavigationViewModel}">
             <views:NavigationView/>
-        </DataTemplate>-->
+        </DataTemplate>
 
-        <!--<DataTemplate DataType="{x:Type viewModels:SettlementsViewModel}">
-            <views:SettlementsView/>
-        </DataTemplate>-->
-        <!--<DataTemplate DataType="{x:Type viewModels:LifetimeViewModel}">
-            <views:LifetimeView/>
-        </DataTemplate>-->
-
-        <!--<DataTemplate DataType="{x:Type viewModels:InteractionNoGiftsViewModel}">
-            <views:InteractionNoGiftsView/>
-        </DataTemplate>-->
-        <!--<DataTemplate DataType="{x:Type viewModels:InteractionWithGiftsViewModel}">
-            <views:InteractionWithGiftsView/>
-        </DataTemplate>-->
-
-        <!--<DataTemplate DataType="{x:Type viewModels:AdditionalInterestGeneralViewModel}">
-            <views:AdditionalInterestGeneralView/>
-        </DataTemplate>-->
-        <!--<DataTemplate DataType="{x:Type viewModelsAdditionalInterestRepaymentViewModel}">
-            <views:AdditionalInterestRepaymentView/>
-        </DataTemplate>-->
-
-        <!--<DataTemplate DataType="{x:Type viewModels:AccumulationViewModel}">
-            <views:AccumulationView/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModels:FontAwesomeViewModel}">
+            <views:FontAwesomeView/>
+        </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModels:StudentViewModel}">
             <views:StudentView/>

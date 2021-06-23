@@ -7,25 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Page Remove="Styles\FontSize12.xaml" />
-    <Page Remove="Styles\FontSize14.xaml" />
-    <Page Remove="Styles\FontSize16.xaml" />
-    <Page Remove="Styles\FontSize18.xaml" />
-    <Page Remove="Styles\FontSize20.xaml" />
-    <Page Remove="Styles\FontSize22.xaml" />
-    <Page Remove="Styles\FontSize24.xaml" />
-    <Page Remove="Styles\FontSize26.xaml" />
+    <None Remove="Styles\Fonts\Font Awesome 5 Brands-Regular-400.otf" />
+    <None Remove="Styles\Fonts\Font Awesome 5 Free-Regular-400.otf" />
+    <None Remove="Styles\Fonts\Font Awesome 5 Free-Solid-900.otf" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="19.0.0" />
-    <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="FontAwesome5" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,60 +22,70 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Styles\FontSize26.xaml">
+    <Resource Include="Styles\Fonts\Font Awesome 5 Brands-Regular-400.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize24.xaml">
+    </Resource>
+    <Resource Include="Styles\Fonts\Font Awesome 5 Free-Regular-400.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize22.xaml">
+    </Resource>
+    <Resource Include="Styles\Fonts\Font Awesome 5 Free-Solid-900.otf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize20.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize18.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize16.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize14.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Include="Styles\FontSize12.xaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </None>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Styles\ThemeLight.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    <Page Update="Styles\FontSize12.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize14.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize16.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize18.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize20.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize22.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize24.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\FontSize26.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\StyleDefault.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Update="Styles\ThemeDark.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
     <Page Update="Styles\ThemeDefault.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Page>
     <Page Update="Styles\ThemeHighContrast.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Update="Styles\ThemeLight.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Page>
   </ItemGroup>
 

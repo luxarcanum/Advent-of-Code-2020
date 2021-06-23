@@ -2,11 +2,12 @@
 
 namespace MVVMDemo.ViewModels
 {
-    class NavigationViewModel : BindableBase
+
+    class FontAwesomeViewModel : BindableBase
     {
         public MyICommand<string> CmdNavigation { get; private set; }
 
-        public NavigationViewModel()
+        public FontAwesomeViewModel()
         {
             CmdNavigation = new MyICommand<string>(ViewNavigation);
         }

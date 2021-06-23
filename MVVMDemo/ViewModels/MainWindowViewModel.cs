@@ -6,7 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Markup;
 
-namespace MVVMDemo.ViewModel
+namespace MVVMDemo.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
@@ -16,9 +16,10 @@ namespace MVVMDemo.ViewModel
         #region View Models
         private NavigationViewModel navigationViewModel = new NavigationViewModel();
 
-        // Tutorial ViewModel
+        private FontAwesomeViewModel fontAwesomeViewModel = new FontAwesomeViewModel();
         private StudentViewModel studentViewModel = new StudentViewModel();
         #endregion
+
 
         public MainWindowViewModel()
         {
@@ -29,6 +30,7 @@ namespace MVVMDemo.ViewModel
             string strTheme = LocalFile.IniReadValue("UserSettings", "Theme");
             ChangeStyle(strTheme);
             CurrentViewModel = navigationViewModel;
+
         }
 
 
@@ -51,7 +53,9 @@ namespace MVVMDemo.ViewModel
                 case "navigation":
                     CurrentViewModel = navigationViewModel;
                     break;
-
+                case "fontAwesome":
+                    CurrentViewModel = fontAwesomeViewModel;
+                    break;
 
                 case "students":
                     CurrentViewModel = studentViewModel;
@@ -63,31 +67,31 @@ namespace MVVMDemo.ViewModel
                     MnuGuidance();
                     break;
                 case "themeLight":
-                    ChangeStyle("LightTheme");
+                    ChangeStyle("ThemeLight");
                     break;
                 case "themeDark":
-                    ChangeStyle("DarkTheme");
+                    ChangeStyle("ThemeDark");
                     break;
                 case "themeHighContrast":
-                    ChangeStyle("HighContrastTheme");
+                    ChangeStyle("ThemeHighContrast");
                     break;
                 case "Font16":
-                    ChangeFontsize("Font16");
+                    ChangeFontsize("FontSize16");
                     break;
                 case "Font18":
-                    ChangeFontsize("Font18");
+                    ChangeFontsize("FontSize18");
                     break;
                 case "Font20":
-                    ChangeFontsize("Font20");
+                    ChangeFontsize("FontSize20");
                     break;
                 case "Font22":
-                    ChangeFontsize("Font22");
+                    ChangeFontsize("FontSize22");
                     break;
                 case "Font24":
-                    ChangeFontsize("Font24");
+                    ChangeFontsize("FontSize24");
                     break;
                 case "Font26":
-                    ChangeFontsize("Font26");
+                    ChangeFontsize("FontSize26");
                     break;
 
                 case "close":
@@ -179,7 +183,7 @@ namespace MVVMDemo.ViewModel
             }
             catch
             {
-                using (FileStream themeFile = new FileStream($"Styles\\DefaultTheme.xaml", FileMode.Open))
+                using (FileStream themeFile = new FileStream($"Styles\\ThemeDefault.xaml", FileMode.Open))
                 {
                     ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                     if (dict != null)
@@ -187,7 +191,7 @@ namespace MVVMDemo.ViewModel
                         Application.Current.Resources.MergedDictionaries.Add(dict);
                     }
                 }
-                UpdateIni("Theme", "DefaultTheme");
+                UpdateIni("Theme", "ThemeDefault");
             }
             #endregion
             //size
@@ -205,7 +209,7 @@ namespace MVVMDemo.ViewModel
             }
             catch
             {
-                using (FileStream themeFile = new FileStream($"Styles\\Font16.xaml", FileMode.Open))
+                using (FileStream themeFile = new FileStream($"Styles\\FontSize16.xaml", FileMode.Open))
                 {
                     ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                     if (dict != null)
@@ -213,12 +217,12 @@ namespace MVVMDemo.ViewModel
                         Application.Current.Resources.MergedDictionaries.Add(dict);
                     }
                 }
-                UpdateIni("TextSize", "Font16");
+                UpdateIni("TextSize", "FontSize16");
             }
             #endregion
             //Reload Style
             #region Load Style File
-            using (FileStream themeFile = new FileStream($"Styles\\DefaultStyle.xaml", FileMode.Open))
+            using (FileStream themeFile = new FileStream($"Styles\\StyleDefault.xaml", FileMode.Open))
             {
                 ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                 if (dict != null)
@@ -248,7 +252,7 @@ namespace MVVMDemo.ViewModel
             }
             catch
             {
-                using (FileStream themeFile = new FileStream($"Styles\\DefaultTheme.xaml", FileMode.Open))
+                using (FileStream themeFile = new FileStream($"Styles\\ThemeDefault.xaml", FileMode.Open))
                 {
                     ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                     if (dict != null)
@@ -256,7 +260,7 @@ namespace MVVMDemo.ViewModel
                         Application.Current.Resources.MergedDictionaries.Add(dict);
                     }
                 }
-                UpdateIni("Theme", "DefaultTheme");
+                UpdateIni("Theme", "ThemeDefault");
             }
             #endregion
             //size
@@ -275,7 +279,7 @@ namespace MVVMDemo.ViewModel
             }
             catch
             {
-                using (FileStream themeFile = new FileStream($"Styles\\Font16.xaml", FileMode.Open))
+                using (FileStream themeFile = new FileStream($"Styles\\FontSize16.xaml", FileMode.Open))
                 {
                     ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                     if (dict != null)
@@ -283,12 +287,12 @@ namespace MVVMDemo.ViewModel
                         Application.Current.Resources.MergedDictionaries.Add(dict);
                     }
                 }
-                UpdateIni("TextSize", "Font16");
+                UpdateIni("TextSize", "FontSize16");
             }
             #endregion
             //Reload Style
             #region Load Style File
-            using (FileStream themeFile = new FileStream($"Styles\\DefaultStyle.xaml", FileMode.Open))
+            using (FileStream themeFile = new FileStream($"Styles\\StyleDefault.xaml", FileMode.Open))
             {
                 ResourceDictionary dict = XamlReader.Load(themeFile) as ResourceDictionary;
                 if (dict != null)

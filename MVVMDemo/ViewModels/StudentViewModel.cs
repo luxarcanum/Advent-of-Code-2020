@@ -1,7 +1,7 @@
 ﻿using MVVMDemo.Models;
 using System.Collections.ObjectModel;
 
-namespace MVVMDemo.ViewModel
+namespace MVVMDemo.ViewModels
 {
 
     class StudentViewModel : BindableBase

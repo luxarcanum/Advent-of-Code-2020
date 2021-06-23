@@ -3,14 +3,13 @@
 namespace MVVMDemo.Views
 {
     /// <summary>
-    /// Interaction logic for StudentView.xaml
+    /// Interaction logic for FontAwesomeView.xaml
     /// </summary>
-    public partial class StudentView : UserControl
+    public partial class FontAwesomeView : UserControl
     {
-        public StudentView()
+        public FontAwesomeView()
         {
             InitializeComponent();
         }
-
     }
 }
