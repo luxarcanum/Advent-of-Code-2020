@@ -1,15 +1,20 @@
 ﻿using MVVMDemo.Utilities;
+using System.Windows.Input;
 
 namespace MVVMDemo.ViewModels
 {
 
     class FontAwesomeViewModel : BindableBase
     {
-        public MyICommand<string> CmdNavigation { get; private set; }
+        public RelayCommand<string> CmdNavigation { get; private set; }
 
         public FontAwesomeViewModel()
         {
-            CmdNavigation = new MyICommand<string>(ViewNavigation);
+            CmdNavigation = new RelayCommand<string>(ViewNavigation);
+
+
+            LoadCommands();
+
         }
 
         #region Navigation Method
@@ -23,6 +28,40 @@ namespace MVVMDemo.ViewModels
             Messenger.Default.Send(destination);
         }
         #endregion
+
+        #region ICommands
+        public ICommand EditCommand { get; set; }
+        public ICommand SaveCommand { get; set; }
+
+        public void LoadCommands()
+        {
+            EditCommand = new RelayCommand(ExecuteEdit, CanExecuteEdit);
+            SaveCommand = new RelayCommand(ExecuteSave, CanExecuteSave);
+        }
+
+        #region Execute CanExecute Methods
+        private bool CanExecuteEdit()
+        {
+            return true;
+        }
+        private void ExecuteEdit()
+        {
+            // Not doing anything
+        }
+
+        private bool CanExecuteSave()
+        {
+            return false;
+        }
+        private void ExecuteSave()
+        {
+            // Not doing anything
+        }
+
+        #endregion
+
+        #endregion
+
 
     }
 }

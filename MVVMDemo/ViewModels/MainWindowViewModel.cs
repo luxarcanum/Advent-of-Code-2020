@@ -10,7 +10,7 @@ namespace MVVMDemo.ViewModels
 {
     class MainWindowViewModel : BindableBase
     {
-        public MyICommand<string> CmdNavigation { get; private set; }
+        public RelayCommand<string> CmdNavigation { get; private set; }
         private BindableBase _CurrentViewModel;
 
         #region View Models
@@ -23,7 +23,9 @@ namespace MVVMDemo.ViewModels
 
         public MainWindowViewModel()
         {
-            CmdNavigation = new MyICommand<string>(ViewNavigation);
+            var StartProg = new LoadAppVariables();
+            StartProg.LoadApplication();
+            CmdNavigation = new RelayCommand<string>(ViewNavigation);
             Messenger.Default.Register<string>(this, UpdateView);
 
             IniFile LocalFile = new IniFile(LoadAppVariables.LocalFile);

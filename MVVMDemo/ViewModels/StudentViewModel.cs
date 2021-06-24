@@ -1,5 +1,6 @@
 ﻿using MVVMDemo.Models;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace MVVMDemo.ViewModels
 {
@@ -8,12 +9,12 @@ namespace MVVMDemo.ViewModels
     {
         private Student _selectedStudent;
         public ObservableCollection<Student> Students { get; set; }
-        public MyICommand<string> CmdStudents { get; set; }
+        public ICommand CmdStudents { get; set; }
 
         public StudentViewModel()
         {
             LoadStudents();
-            CmdStudents = new MyICommand<string>(OnDelete, CanDelete);
+            CmdStudents = new RelayCommand(OnDelete, CanDelete);
         }
 
         public void LoadStudents()
@@ -30,21 +31,18 @@ namespace MVVMDemo.ViewModels
         public Student SelectedStudent
         {
             get { return _selectedStudent; }
-            set
-            {
-                _selectedStudent = value;
-                CmdStudents.RaiseCanExecuteChanged();
-            }
+            set { _selectedStudent = value; }
         }
 
-        private void OnDelete(string command)
+        private void OnDelete()
         {
             Students.Remove(SelectedStudent);
         }
 
-        private bool CanDelete(string command)
+        private bool CanDelete()
         {
-            return SelectedStudent != null;
+            if (SelectedStudent == null) return false;
+            return true;
         }
     }
 }

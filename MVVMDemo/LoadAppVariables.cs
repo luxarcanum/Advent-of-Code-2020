@@ -17,10 +17,10 @@ namespace MVVMDemo
 
             // get path to local file
             #region Local FIle
-            LocalFile = AppDomain.CurrentDomain.BaseDirectory + "lclCalculators.ini";
+            LocalFile = AppDomain.CurrentDomain.BaseDirectory + "lclData.ini";
             IniFile iniLocal = new IniFile(LocalFile);
             GlobalFile = iniLocal.IniReadValue("Paths", "GlobalFile");
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "lclCalculators.ini"))
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "lclData.ini"))
             {
                 try
                 {
@@ -36,7 +36,7 @@ namespace MVVMDemo
                 }
                 catch
                 {
-                    Global.Theme = "Light";
+                    Global.Theme = "ThemeDefault";
                 }
                 try
                 {
@@ -44,7 +44,7 @@ namespace MVVMDemo
                 }
                 catch
                 {
-                    Global.TextSize = "Font16";
+                    Global.TextSize = "FontSize16";
                 }
             }
             else

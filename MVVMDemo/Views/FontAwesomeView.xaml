@@ -10,7 +10,7 @@
              vml:ViewModelLocator.AutoHookedUpViewModel = "True" 
              xmlns:fa5="http://schemas.fontawesome.com/icons/"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1000">
     <UserControl.Resources>
         <FontFamily x:Key="FontAwesomeBrands">/Styles/Fonts/Font Awesome 5 Brands-Regular-400.otf#Font Awesome 5 Brands</FontFamily>
         <FontFamily x:Key="FontAwesomeRegular">/Styles/Fonts/Font Awesome 5 Free-Regular-400.otf#Font Awesome 5 Free Regular</FontFamily>
@@ -23,37 +23,36 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*" MaxWidth="500"/>
+            <ColumnDefinition Width="1*" MaxWidth="500"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Lifetime Grossing -->
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Border Style="{DynamicResource ContentBorder}">
                 <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                     <Run Text="OTF Font File" FontSize="16" BaselineAlignment="Center" />
-                    <Run Text="&#xf35a;" FontFamily="{DynamicResource FontAwesomeSolid}" Foreground="Black" FontSize="50" BaselineAlignment="Center" />
+                    <Run Text="&#xf4fe;" FontFamily="{DynamicResource FontAwesomeSolid}" Foreground="Black" FontSize="50" BaselineAlignment="Center" />
                 </TextBlock>
             </Border>
 
             <Border Style="{DynamicResource ContentBorder}">
                 <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                     <Run Text="NuGet FontAwesome" FontSize="16" BaselineAlignment="Center" />
-                    <fa5:FontAwesome Icon="Solid_ArrowAltCircleRight" FontSize="50" Foreground="Black" ToolTip="Add to selected Project."/>
+                    <fa5:FontAwesome Icon="Solid_UserCog" FontSize="50" Foreground="Black" ToolTip="Add to selected Project."/>
                 </TextBlock>
             </Border>
 
             <Border Style="{DynamicResource ContentBorder}">
                 <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                     <Run Text="NuGet ImageAwesome" FontSize="16" BaselineAlignment="Center" />
-                    <fa5:ImageAwesome Icon="Solid_ArrowAltCircleRight" Width="50" Height="50" Margin="5" ToolTip="Add to selected Project."/>
+                    <fa5:ImageAwesome Icon="Solid_UserCog" Height="50" Width="50" Margin="5" ToolTip="Add to selected Project."/>
                 </TextBlock>
             </Border>
 
             <Border Style="{DynamicResource ContentBorder}">
                 <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                     <Run Text="NuGet SvgAwesome" FontSize="16" BaselineAlignment="Center" />
-                    <fa5:SvgAwesome Icon="Solid_ArrowAltCircleRight" Height="50" />
+                    <fa5:SvgAwesome Icon="Solid_UserCog" Height="50" Width="50" Margin="5" />
                 </TextBlock>
             </Border>
         </StackPanel>
@@ -64,11 +63,12 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-                    <Label Style="{DynamicResource LabelHeader}">Button using OTF font Enabled</Label>
-                    <Button Style="{StaticResource BasicButton}" IsEnabled="True">
-                        <TextBlock ToolTip="Edit Task List." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                    <Label Style="{DynamicResource LabelHeader}" HorizontalAlignment="Center">Button using OTF font Enabled</Label>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding EditCommand}"  Width="250">
+                        <TextBlock ToolTip="Edit Command." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                             <Run Text="&#xf044;" FontFamily="{DynamicResource FontAwesomeSolid}" FontSize="24" BaselineAlignment="Center" />
-                            <Run Text="Edit Task List" FontSize="24" BaselineAlignment="Center" />
+                            <Run Text="Edit Command" FontSize="24" BaselineAlignment="Center" />
                         </TextBlock>
                     </Button>
                 </StackPanel>
@@ -77,11 +77,12 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-                    <Label Style="{DynamicResource LabelHeader}">Button using OTF font Disabled</Label>
-                    <Button Style="{StaticResource BasicButton}" IsEnabled="False">
-                        <TextBlock ToolTip="Edit Task List." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
-                            <Run Text="&#xf044;" FontFamily="{DynamicResource FontAwesomeSolid}" FontSize="24" BaselineAlignment="Center" />
-                            <Run Text="Edit Task List" FontSize="24" BaselineAlignment="Center"  />
+                    <Label Style="{DynamicResource LabelHeader}" Content="Button using OTF font Disabled" HorizontalAlignment="Center"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding SaveCommand}" Width="250">
+                        <TextBlock ToolTip="Save Command" VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <Run Text="&#xf0c7;" FontFamily="{DynamicResource FontAwesomeSolid}" FontSize="24" BaselineAlignment="Center" />
+                            <Run Text="Save Command" FontSize="24" BaselineAlignment="Center"  />
                         </TextBlock>
                     </Button>
                 </StackPanel>
@@ -90,26 +91,18 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-                    <Button Style="{StaticResource ThreeDButtonStyle}" IsEnabled="True">
-
-                        <StackPanel ToolTip="Add New Task." Orientation="Horizontal" VerticalAlignment="Center">
-                            <fa5:ImageAwesome Icon="Solid_PlusCircle" Height="24" Margin="5" />
-                            <TextBlock Text="New Task" FontSize="24" VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}"/>
-                        </StackPanel>
-                    </Button>
+                    <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}" Width="400" TextWrapping="Wrap">
+                            <Run FontSize="16" BaselineAlignment="Center">This is just a sentance with a Random</Run>
+                            <Run Text="&#xf074;" FontFamily="{DynamicResource FontAwesomeSolid}" Foreground="Black" FontSize="16" BaselineAlignment="Center" />
+                            <Run FontSize="16" BaselineAlignment="Center">icon thrown in (actually the random icon).</Run>
+                    </TextBlock>
                 </StackPanel>
             </Border>
 
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-                    <Button Style="{StaticResource ThreeDButtonStyle}" IsEnabled="False">
 
-                        <StackPanel ToolTip="Add New Task." Orientation="Horizontal" VerticalAlignment="Center">
-                            <fa5:ImageAwesome Icon="Solid_PlusCircle" Height="24" Margin="5" />
-                            <TextBlock Text="New Task" FontSize="24" VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}"/>
-                        </StackPanel>
-                    </Button>
                 </StackPanel>
             </Border>
         </StackPanel>

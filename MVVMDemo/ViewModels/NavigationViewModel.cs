@@ -1,14 +1,15 @@
 ﻿using MVVMDemo.Utilities;
+using System.Windows.Input;
 
 namespace MVVMDemo.ViewModels
 {
     class NavigationViewModel : BindableBase
     {
-        public MyICommand<string> CmdNavigation { get; private set; }
+        public ICommand CmdNavigation { get; set; }
 
         public NavigationViewModel()
         {
-            CmdNavigation = new MyICommand<string>(ViewNavigation);
+            CmdNavigation = new RelayCommand<string>(ViewNavigation);
         }
 
         #region Navigation Method
