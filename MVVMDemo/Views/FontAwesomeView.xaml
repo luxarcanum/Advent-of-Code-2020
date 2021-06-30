@@ -38,7 +38,7 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                     <Run Text="NuGet FontAwesome" FontSize="16" BaselineAlignment="Center" />
-                    <fa5:FontAwesome Icon="Solid_UserCog" FontSize="50" Foreground="Black" ToolTip="Add to selected Project."/>
+                    <fa5:FontAwesome Icon="Brands_Google" FontSize="50" Foreground="Black" ToolTip="Add to selected Project."/>
                 </TextBlock>
             </Border>
 
@@ -92,7 +92,7 @@
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
                     <TextBlock  Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center" Style="{DynamicResource TextBlockLabel}" Width="400" TextWrapping="Wrap">
-                            <Run FontSize="16" BaselineAlignment="Center">This is just a sentance with a Random</Run>
+                            <Run FontSize="16" BaselineAlignment="Center">This is just a sentence with a Random</Run>
                             <Run Text="&#xf074;" FontFamily="{DynamicResource FontAwesomeSolid}" Foreground="Black" FontSize="16" BaselineAlignment="Center" />
                             <Run FontSize="16" BaselineAlignment="Center">icon thrown in (actually the random icon).</Run>
                     </TextBlock>
