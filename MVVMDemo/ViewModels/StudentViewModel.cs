@@ -1,5 +1,7 @@
 ﻿using MVVMDemo.Models;
+using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Windows.Input;
 
 namespace MVVMDemo.ViewModels
@@ -7,33 +9,50 @@ namespace MVVMDemo.ViewModels
 
     class StudentViewModel : BindableBase
     {
-        private Student _selectedStudent;
-        public ObservableCollection<Student> Students { get; set; }
-        public ICommand CmdStudents { get; set; }
+        #region Properties
+        private ObservableCollection<Student> _students;
+        public ObservableCollection<Student> Students { get => _students; set => SetProperty(ref _students, value); }
 
+        private ObservableCollection<StudentResults> _studentsImported;
+        public ObservableCollection<StudentResults> StudentsImported { get => _studentsImported; set => SetProperty(ref _studentsImported, value); }
+
+        public Student SelectedStudent { get; set; }
+        public string FilePathName = @"D:\Users\U.6074887\Outputs\students.json";
+        #endregion
+
+        #region Command Properties
+        public ICommand DelStudents { get; set; }
+        public ICommand ExpStudents { get; set; }
+        public ICommand ImpStudents { get; set; }
+        #endregion
+
+        #region Constructor
         public StudentViewModel()
         {
+            LoadCommands();
             LoadStudents();
-            CmdStudents = new RelayCommand(OnDelete, CanDelete);
+        }
+        #endregion
+
+        #region Methods
+        public void LoadCommands()
+        {
+            DelStudents = new RelayCommand(OnDelete, CanDelete);
+            ExpStudents = new RelayCommand(CanExport);
+            ImpStudents = new RelayCommand(CanImport);
         }
 
         public void LoadStudents()
         {
             ObservableCollection<Student> students = new ObservableCollection<Student>();
-
             students.Add(new Student { FirstName = "Mark", LastName = "Allain" });
             students.Add(new Student { FirstName = "Allen", LastName = "Brown" });
             students.Add(new Student { FirstName = "Linda", LastName = "Hamerski" });
-
             Students = students;
         }
+        #endregion
 
-        public Student SelectedStudent
-        {
-            get { return _selectedStudent; }
-            set { _selectedStudent = value; }
-        }
-
+        #region Command Methods
         private void OnDelete()
         {
             Students.Remove(SelectedStudent);
@@ -44,5 +63,19 @@ namespace MVVMDemo.ViewModels
             if (SelectedStudent == null) return false;
             return true;
         }
+
+        private void CanExport()
+        {
+            string serializedData = JsonConvert.SerializeObject(Students);
+            File.WriteAllText(FilePathName, serializedData);
+        }
+
+        private void CanImport()
+        {
+            string deserializedData = File.ReadAllText(FilePathName);
+            ObservableCollection<StudentResults> studentsImported = JsonConvert.DeserializeObject<ObservableCollection<StudentResults>>(deserializedData);
+            StudentsImported = studentsImported;
+        }
+        #endregion
     }
 }

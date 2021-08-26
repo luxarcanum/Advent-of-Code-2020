@@ -11,29 +11,172 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.Resources>
+    <!--<UserControl.Resources>
         <DataTemplate DataType="{x:Type data:Student}">
             <StackPanel Orientation = "Horizontal">
                 <TextBox Text="{Binding Path=FirstName, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
                          Width="100" Margin="3 5 3 5" />
                 <TextBox Text="{Binding Path=LastName, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
                          Width="100" Margin="0 5 3 5" />
-                <TextBlock Text="{Binding Path=FullName, Mode=OneWay}" Margin="0 5 3 5" />
+                <TextBlock Text="{Binding Path=FullName, Mode=OneWay}"
+                           Width="150" Margin="0 5 3 5" />
+                <TextBox Text="{Binding Path=Module1, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
+                         Width="50" Margin="0 5 3 5" />
+                <TextBox Text="{Binding Path=Module2, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
+                         Width="50" Margin="0 5 3 5" />
+                <TextBox Text="{Binding Path=Module3, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
+                         Width="50" Margin="0 5 3 5" />
+                <TextBox Text="{Binding Path=Module4, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" 
+                         Width="50" Margin="0 5 3 5" />
             </StackPanel>
         </DataTemplate>
-    </UserControl.Resources>
+    </UserControl.Resources>-->
 
     <Grid>
-        <StackPanel Orientation = "Horizontal">
-            <ListBox ItemsSource = "{Binding Students}" 
-                     SelectedItem = "{Binding SelectedStudent}"/>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="0">
+            <ListView ItemsSource = "{Binding Students}" 
+                     SelectedItem = "{Binding SelectedStudent}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="First Name" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=FirstName, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="85" Margin="0,5,3,5"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Last Name" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=LastName, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="85" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Full Name" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=FullName, Mode=OneWay}" Width="135" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 1" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module1, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 2" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module2, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 3" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module3, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 4" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module4, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
 
-            <Button Content = "Delete" 
-                    Command = "{Binding CmdStudents}"
-                    CommandParameter="deleteStudent"
-                    HorizontalAlignment = "Left" 
-                    VerticalAlignment = "Top" 
-                    Width = "75" />
+            </ListView>
+
+            <StackPanel Orientation="Vertical">
+                <Button Content = "Delete" 
+                        Margin="20"
+                        Command = "{Binding DelStudents}"
+                        CommandParameter="deleteStudent"
+                        HorizontalAlignment = "Left" 
+                        VerticalAlignment = "Top" 
+                        Width = "75" />
+
+                <Button Content = "Export" 
+                        Margin="20"
+                        Command = "{Binding ExpStudents}"
+                        CommandParameter="exportStudent"
+                        HorizontalAlignment = "Left" 
+                        VerticalAlignment = "Top" 
+                        Width = "75" />
+            </StackPanel>
+
+        </StackPanel>
+        <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="1">
+            <ListView ItemsSource = "{Binding StudentsImported}" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Full Name" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=FullName, Mode=OneWay}" Width="135" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 1" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module1, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 2" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module2, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 3" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module3, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Module 4" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Module4, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Overall" Width="70">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Overall, StringFormat=P2, ValidatesOnNotifyDataErrors = True, Mode=TwoWay}" Width="55" Margin="0,5,3,5" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+
+            </ListView>
+
+            <StackPanel Orientation="Vertical">
+
+                <Button Content = "Import" 
+                        Margin="20"
+                        Command = "{Binding ImpStudents}"
+                        CommandParameter="importStudent"
+                        HorizontalAlignment = "Left" 
+                        VerticalAlignment = "Top" 
+                        Width = "75" />
+            </StackPanel>
+
         </StackPanel>
     </Grid>
 </UserControl>
