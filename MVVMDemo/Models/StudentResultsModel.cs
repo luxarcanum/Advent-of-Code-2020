@@ -12,6 +12,5 @@
             set { SetProperty(ref _overall, value); }
         }
 
-
     }
 }

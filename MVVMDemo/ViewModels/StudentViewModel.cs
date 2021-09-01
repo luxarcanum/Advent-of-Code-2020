@@ -38,8 +38,8 @@ namespace MVVMDemo.ViewModels
         public void LoadCommands()
         {
             DelStudents = new RelayCommand(OnDelete, CanDelete);
-            ExpStudents = new RelayCommand(CanExport);
-            ImpStudents = new RelayCommand(CanImport);
+            ExpStudents = new RelayCommand(ExportStudents);
+            ImpStudents = new RelayCommand(ImportStudents);
         }
 
         public void LoadStudents()
@@ -64,13 +64,13 @@ namespace MVVMDemo.ViewModels
             return true;
         }
 
-        private void CanExport()
+        private void ExportStudents()
         {
             string serializedData = JsonConvert.SerializeObject(Students);
             File.WriteAllText(FilePathName, serializedData);
         }
 
-        private void CanImport()
+        private void ImportStudents()
         {
             string deserializedData = File.ReadAllText(FilePathName);
             ObservableCollection<StudentResults> studentsImported = JsonConvert.DeserializeObject<ObservableCollection<StudentResults>>(deserializedData);
