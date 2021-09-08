@@ -17,6 +17,7 @@ namespace Advent2015
             string dataSet = @"";
             List<Tuple<int, int, int>> rdData = new List<Tuple<int, int, int>>();
 
+
             // Parse File
             dataSet = MyConsoleApp.Utilities.FileUtilities.ReadTxtToString(inputFile);
 
