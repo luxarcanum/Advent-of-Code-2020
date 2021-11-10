@@ -26,6 +26,13 @@
             <views:StudentView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:AccessibleViewModel}">
+            <views:AccessibleView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:ColourSliderViewModel}">
+            <views:ColourSliderView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Grid Style="{DynamicResource GridMainwindow}">
@@ -42,6 +49,12 @@
                     <MenuItem x:Name="mnuFontAwesome" Header="FontAwesome"
                           Command="{Binding CmdNavigation}" 
                           CommandParameter="fontAwesome"/>
+                    <MenuItem x:Name="mnuColourSlider" Header="ColourSlider"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="colourSlider"/>
+                    <MenuItem x:Name="mnuAccessible" Header="Accessibility"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="accessibile"/>
                 </MenuItem>
 
 

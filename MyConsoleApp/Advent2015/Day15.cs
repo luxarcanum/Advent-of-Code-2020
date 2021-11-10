@@ -127,8 +127,8 @@ namespace Advent2015
             int flavourScore = w * ListOfIngredients[0].Flavour + x * ListOfIngredients[1].Flavour + y * ListOfIngredients[2].Flavour + z * ListOfIngredients[3].Flavour;
             int textureScore = w * ListOfIngredients[0].Texture + x * ListOfIngredients[1].Texture + y * ListOfIngredients[2].Texture + z * ListOfIngredients[3].Texture;
 
-            int calorieCount = w * ListOfIngredients[0].Calories + x * ListOfIngredients[1].Calories + y * ListOfIngredients[2].Calories + z * ListOfIngredients[3].Calories;
-            if (calorieCount != 500) return 0;
+            //int calorieCount = w * ListOfIngredients[0].Calories + x * ListOfIngredients[1].Calories + y * ListOfIngredients[2].Calories + z * ListOfIngredients[3].Calories;
+            //if (calorieCount != 500) return 0;
 
             capacityScore = capacityScore < 0 ? 0 : capacityScore;
             durabilityScore = durabilityScore < 0 ? 0 : durabilityScore;

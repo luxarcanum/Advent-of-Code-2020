@@ -73,7 +73,16 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-
+                    <Label Content="Accessibility Test Page"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="accessibile">
+                        <TextBlock ToolTip="Accessibility Test Page." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Brands_FontAwesome" FontSize="50" Foreground="Black"/>
+                            <Run Text="Accessibility" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </Border>
 
