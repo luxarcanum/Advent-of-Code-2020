@@ -12,16 +12,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBox DockPanel.Dock="Top" Margin="0,0,0,10" Name="txtFilter" TextChanged="txtFilter_TextChanged" >
-            <i:Interaction.Triggers>
-                <i:EventTrigger EventName="TextChanged" >
-                    <i:InvokeCommandAction Command="{Binding SearchableTaskCommand}" />
-                </i:EventTrigger>
-            </i:Interaction.Triggers>
-        </TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <TextBlock Text="Filter Task Name"/>
+            <TextBox Margin="10,0,0,10" 
+                     Width="150"
+                     Text="{Binding Path=SearchText, UpdateSourceTrigger=PropertyChanged}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="TextChanged" >
+                        <i:InvokeCommandAction Command="{Binding SearchableTaskCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </TextBox>
+        </StackPanel>
 
         <ListView ScrollViewer.VerticalScrollBarVisibility="Visible"
-                  MaxHeight="300"
+                  MaxHeight="300"  Grid.Row="1"
+                  IsTextSearchEnabled="True"
                   ItemsSource="{Binding Path=TaskList}"
                   SelectedItem="{Binding SelectedTask}">
             <ListView.View>
@@ -98,5 +110,11 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ListView>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Text="Selected Task Name"/>
+            <TextBlock Margin="10,0,0,0" Text="{Binding FilteredTaskName}"/>
+        </StackPanel>
+
     </Grid>
 </UserControl>

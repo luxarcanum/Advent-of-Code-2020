@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace MVVMDemo.ViewModels
@@ -15,6 +16,15 @@ namespace MVVMDemo.ViewModels
 
         private DirectTasks _selectedTask;
         public DirectTasks SelectedTask { get => _selectedTask; set => SetProperty(ref _selectedTask, value); }
+
+        private string _searchText;
+        public string SearchText { get => _searchText; set => SetProperty(ref _searchText, value); }
+
+        private CollectionView _filteredList;
+        public CollectionView FilteredList { get => _filteredList; set => SetProperty(ref _filteredList, value); }
+
+        private string _filteredTaskName;
+        public string FilteredTaskName { get => _filteredTaskName; set => SetProperty(ref _filteredTaskName, value); }
 
         #region Command Properties
         public ICommand SelectedTaskChangedCommand { get; set; }
@@ -47,8 +57,24 @@ namespace MVVMDemo.ViewModels
 
             TaskList = addingTasks;
 
-
+            FilteredList = (CollectionView)CollectionViewSource.GetDefaultView(TaskList);
+            FilteredList.Filter = TaskFilter;
         }
+
+        private bool TaskFilter(object item)
+        {
+            if (String.IsNullOrEmpty(SearchText))
+                return true;
+            else
+                return (item as DirectTasks).TaskName.IndexOf(SearchText, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private void txtFilter_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(TaskList).Refresh();
+        }
+
+
         public void LoadCommands()
         {
             SelectedTaskChangedCommand = new RelayCommand(ExecuteSelectedTaskChangedCommand, CanExecuteSelectedTaskChangedCommand);
@@ -65,7 +91,7 @@ namespace MVVMDemo.ViewModels
 
         private void ExecuteSelectedTaskChangedCommand()
         {
-
+            FilteredTaskName = SelectedTask.TaskName;
         }
 
         private bool CanExecuteSearchableTaskCommand()
@@ -74,7 +100,7 @@ namespace MVVMDemo.ViewModels
         }
         private void ExecuteSearchableTaskCommand()
         {
-
+            CollectionViewSource.GetDefaultView(TaskList).Refresh();
         }
 
         #endregion
