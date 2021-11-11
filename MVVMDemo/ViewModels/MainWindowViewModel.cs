@@ -19,6 +19,7 @@ namespace MVVMDemo.ViewModels
         private FontAwesomeViewModel fontAwesomeViewModel = new FontAwesomeViewModel();
         private StudentViewModel studentViewModel = new StudentViewModel();
         private AccessibleViewModel accessibleViewModel = new AccessibleViewModel();
+        private SearchableListViewModel searchableListViewModel = new SearchableListViewModel();
         private ColourSliderViewModel colourSliderViewModel = new ColourSliderViewModel();
         #endregion
 
@@ -68,6 +69,9 @@ namespace MVVMDemo.ViewModels
                     break;
                 case "accessibile":
                     CurrentViewModel = accessibleViewModel;
+                    break;
+                case "searchableList":
+                    CurrentViewModel = searchableListViewModel;
                     break;
 
                 case "about":

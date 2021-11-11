@@ -54,7 +54,7 @@ namespace MVVMDemo.ViewModels
         public AccessibleViewModel()
         {
             LoadCommands();
-            LoadinitialData();
+            LoadInitialData();
         }
         #endregion
 
@@ -66,7 +66,7 @@ namespace MVVMDemo.ViewModels
             TeamSelectedCommand = new RelayCommand(ExecuteTeamSelectedCommand, CanExecuteTeamSelectedCommand);
         }
 
-        public void LoadinitialData()
+        public void LoadInitialData()
         {
             FilterObject = new StructureDetails() { StructureID = 4, LocationID = 2, TeamID = 4 };
 

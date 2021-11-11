@@ -30,6 +30,10 @@
             <views:AccessibleView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:SearchableListViewModel}">
+            <views:SearchableListView/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModels:ColourSliderViewModel}">
             <views:ColourSliderView/>
         </DataTemplate>
@@ -55,6 +59,9 @@
                     <MenuItem x:Name="mnuAccessible" Header="Accessibility"
                           Command="{Binding CmdNavigation}" 
                           CommandParameter="accessibile"/>
+                    <MenuItem x:Name="mnuSearchableList" Header="Searchable List"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="searchableList"/>
                 </MenuItem>
 
 
