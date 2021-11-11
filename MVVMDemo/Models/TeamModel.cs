@@ -26,7 +26,7 @@ namespace MVVMDemo.Models
         #region Allow Linq.Distinct() on custom objects
         public bool Equals(TeamModel other)
         {
-            if (TeamID == other.TeamID && TeamTitle == other.TeamTitle)
+            if (PreviousID == other.PreviousID && TeamID == other.TeamID && TeamTitle == other.TeamTitle)
                 return true;
 
             return false;
@@ -34,10 +34,11 @@ namespace MVVMDemo.Models
 
         public override int GetHashCode()
         {
+            int hashPrevious = PreviousID == 0 ? 0 : PreviousID.GetHashCode();
             int hashID = TeamID == 0 ? 0 : TeamID.GetHashCode();
             int hashTitle = TeamTitle == null ? 0 : TeamTitle.GetHashCode();
 
-            return hashID ^ hashTitle;
+            return hashPrevious ^ hashID ^ hashTitle;
         }
         #endregion
     }

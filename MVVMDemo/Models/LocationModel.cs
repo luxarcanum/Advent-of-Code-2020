@@ -34,10 +34,11 @@ namespace MVVMDemo.Models
 
         public override int GetHashCode()
         {
+            int hashPrevious = PreviousID == 0 ? 0 : PreviousID.GetHashCode();
             int hashID = LocationID == 0 ? 0 : LocationID.GetHashCode();
             int hashTitle = LocationTitle == null ? 0 : LocationTitle.GetHashCode();
 
-            return hashID ^ hashTitle;
+            return hashPrevious ^ hashID ^ hashTitle;
         }
         #endregion
     }

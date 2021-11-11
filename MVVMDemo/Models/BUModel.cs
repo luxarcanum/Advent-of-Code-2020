@@ -26,7 +26,7 @@ namespace MVVMDemo.Models
         #region Allow Linq.Distinct() on custom objects
         public bool Equals(BUModel other)
         {
-            if (BUID == other.BUID && BUTitle == other.BUTitle)
+            if (PreviousID == other.PreviousID && BUID == other.BUID && BUTitle == other.BUTitle)
                 return true;
 
             return false;
@@ -34,10 +34,11 @@ namespace MVVMDemo.Models
 
         public override int GetHashCode()
         {
+            int hashPrevious = PreviousID == 0 ? 0 : PreviousID.GetHashCode();
             int hashID = BUID == 0 ? 0 : BUID.GetHashCode();
             int hashTitle = BUTitle == null ? 0 : BUTitle.GetHashCode();
 
-            return hashID ^ hashTitle;
+            return hashPrevious ^ hashID ^ hashTitle;
         }
         #endregion
     }
