@@ -39,6 +39,11 @@ namespace MVVMDemo.ViewModels
         private TeamModel _selectedTeam;
         public TeamModel SelectedTeam { get => _selectedTeam; set => SetProperty(ref _selectedTeam, value); }
 
+        private List<StructureDetails> _structureList;
+        public List<StructureDetails> StructureList { get => _structureList; set => SetProperty(ref _structureList, value); }
+
+        private StructureDetails _selectedStructure;
+        public StructureDetails SelectedStructure { get => _selectedStructure; set => SetProperty(ref _selectedStructure, value); }
 
         private StructureDetails _filterObject;
         public StructureDetails FilterObject { get => _filterObject; set => SetProperty(ref _filterObject, value); }
@@ -48,6 +53,7 @@ namespace MVVMDemo.ViewModels
         public ICommand LocationSelectedCommand { get; set; }
         public ICommand BUSelectedCommand { get; set; }
         public ICommand TeamSelectedCommand { get; set; }
+        public ICommand SelectedStructureCommand { get; set; }
         #endregion
 
         #region Constructor
@@ -64,6 +70,7 @@ namespace MVVMDemo.ViewModels
             LocationSelectedCommand = new RelayCommand(ExecuteLocationSelectedCommand, CanExecuteLocationSelectedCommand);
             BUSelectedCommand = new RelayCommand(ExecuteBUSelectedCommand, CanExecuteBUSelectedCommand);
             TeamSelectedCommand = new RelayCommand(ExecuteTeamSelectedCommand, CanExecuteTeamSelectedCommand);
+            SelectedStructureCommand = new RelayCommand(ExecuteSelectedStructureCommand);
         }
 
         public void LoadInitialData()
@@ -81,6 +88,8 @@ namespace MVVMDemo.ViewModels
             allowedStructure.Add(new StructureDetails { StructureID = 8, LocationID = 2, LocationTitle = "Glasgow", BUID = 2, BUTitle = "Command 2", TeamID = 4, TeamTitle = "Team 4" });
             allowedStructure.Add(new StructureDetails { StructureID = 9, LocationID = 3, LocationTitle = "Newcastle", BUID = 3, BUTitle = "Command 3", TeamID = 5, TeamTitle = "Team 5" });
             allowedStructure.Add(new StructureDetails { StructureID = 10, LocationID = 3, LocationTitle = "Newcastle", BUID = 3, BUTitle = "Command 3", TeamID = 6, TeamTitle = "Team 6" });
+
+            StructureList = allowedStructure;
 
             FullLocationList = allowedStructure.Select(x => new LocationModel { LocationID = x.LocationID, LocationTitle = x.LocationTitle }).Distinct().ToList();
             FullBUList = allowedStructure.Select(x => new BUModel { PreviousID = x.LocationID, BUID = x.BUID, BUTitle = x.BUTitle }).Distinct().ToList();
@@ -136,6 +145,11 @@ namespace MVVMDemo.ViewModels
         }
 
         private void ExecuteTeamSelectedCommand()
+        {
+
+        }
+
+        private void ExecuteSelectedStructureCommand()
         {
 
         }

@@ -57,7 +57,16 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-
+                    <Label Content="Colour Slider"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="colourSlider">
+                        <TextBlock ToolTip="Colour Slider." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Solid_List" FontSize="50" Foreground="Black"/>
+                            <Run Text="Colour Slider" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </Border>
 
@@ -105,7 +114,16 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-
+                    <Label Content="Scalable ViewBox"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="scalableViewBox">
+                        <TextBlock ToolTip="Scalable View Box." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Solid_StreetView" FontSize="50" Foreground="Black"/>
+                            <Run Text="Scalable ViewBox" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </Border>
 

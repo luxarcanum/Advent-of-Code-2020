@@ -24,6 +24,13 @@ namespace MVVMDemo.Models
         public string TeamTitle { get => _teamTitle; set => SetProperty(ref _teamTitle, value); }
 
 
+        #region Fix accessible Name
+        public override string ToString()
+        {
+            return "Location: " + _locationTitle + " Business Unit: " + BUTitle + " Team Name: " + TeamTitle.ToString();
+        }
+        #endregion
+
     }
 
 

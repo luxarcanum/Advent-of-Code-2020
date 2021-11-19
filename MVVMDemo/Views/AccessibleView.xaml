@@ -1,4 +1,4 @@
-﻿<UserControl x:Class = "MVVMDemo.Views.AccessibleView" 
+﻿<UserControl x:Class="MVVMDemo.Views.AccessibleView" 
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:MVVMDemo.Views"
              xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
              xmlns:data = "clr-namespace:MVVMDemo.Models" 
-             xmlns:vml = "clr-namespace:MVVMDemo.VML"
+             xmlns:vml = "clr-namespace:MVVMDemo.VML" 
              vml:ViewModelLocator.AutoHookedUpViewModel = "True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -17,14 +17,13 @@
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
             <RowDefinition Height="25"/>
+            <RowDefinition Height="300"/>
         </Grid.RowDefinitions>
 
         <TextBox Text="Start"  Grid.Row="0"/>
 
+        <!--#region Dropdowns -->
         <StackPanel Orientation = "Horizontal" Grid.Row="1">
-
-
-
             <!-- Location -->
             <TextBlock x:Name="lbl_Location"
                        Text="Location"
@@ -76,6 +75,7 @@
                 </i:Interaction.Triggers>
             </ComboBox>
         </StackPanel>
+        <!--#endregion-->
 
         <StackPanel Orientation = "Horizontal" Grid.Row="2">
             <TextBlock Text="{Binding SelectedLocation.LocationTitle}"
@@ -89,10 +89,86 @@
             <TextBlock Text="{Binding SelectedTeam.TeamTitle}"
                        Focusable="True"
                         Width="200"/>
-
         </StackPanel>
 
+        <ListView ScrollViewer.VerticalScrollBarVisibility="Visible"
+                  AutomationProperties.Name="List of Structures"
+                  MaxHeight="300" Grid.Row="3"
+                  IsTextSearchEnabled="True"
+                  ItemsSource="{Binding Path=StructureList}"
+                  SelectedItem="{Binding SelectedStructure}">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="Structure ID">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding StructureID}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
 
+                    <GridViewColumn Header="Location ID">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding LocationID}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Location">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding LocationTitle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="BU ID">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding BUID}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="BU">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding BUTitle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+                    <GridViewColumn Header="Team ID">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding TeamID}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Team">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="14" Foreground="Black"
+                                           Text="{Binding TeamTitle}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                </GridView>
+            </ListView.View>
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged" >
+                    <i:InvokeCommandAction Command="{Binding SelectedStructureCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListView>
 
     </Grid>
 </UserControl>

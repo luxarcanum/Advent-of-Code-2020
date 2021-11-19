@@ -8,7 +8,7 @@ using System.Windows.Markup;
 
 namespace MVVMDemo.ViewModels
 {
-    class MainWindowViewModel : BindableBase
+    class ApplicationViewModel : BindableBase
     {
         public RelayCommand<string> CmdNavigation { get; private set; }
         private BindableBase _CurrentViewModel;
@@ -21,10 +21,11 @@ namespace MVVMDemo.ViewModels
         private AccessibleViewModel accessibleViewModel = new AccessibleViewModel();
         private SearchableListViewModel searchableListViewModel = new SearchableListViewModel();
         private ColourSliderViewModel colourSliderViewModel = new ColourSliderViewModel();
+        private ScalableViewBoxViewModel scalableViewBoxViewModel = new ScalableViewBoxViewModel();
         #endregion
 
 
-        public MainWindowViewModel()
+        public ApplicationViewModel()
         {
             var StartProg = new LoadAppVariables();
             StartProg.LoadApplication();
@@ -72,6 +73,9 @@ namespace MVVMDemo.ViewModels
                     break;
                 case "searchableList":
                     CurrentViewModel = searchableListViewModel;
+                    break;
+                case "scalableViewBox":
+                    CurrentViewModel = scalableViewBoxViewModel;
                     break;
 
                 case "about":
