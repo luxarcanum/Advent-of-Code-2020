@@ -39,71 +39,104 @@
                     </i:Interaction.Triggers>
                 </ListBox>
 
-                <StackPanel Orientation="Vertical" Margin="20">
-                    <Label Content="Selected Background" Background="White" Foreground="Black"/>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Red Green Blue: "/>
-                        <Run Text="{Binding RgbColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Hex Value: "/>
-                        <Run Text="{Binding HexColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Colour Name: "/>
-                        <Run Text="{Binding NamedColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="1" Content="Background" Background="White" Foreground="Black"/>
+                    <Label Grid.Row="0" Grid.Column="2" Content="Inverted" Background="White" Foreground="Black"/>
+                    <Label Grid.Row="0" Grid.Column="3" Content="Black" Background="White" Foreground="Black"/>
+                    <Label Grid.Row="0" Grid.Column="4" Content="white" Background="White" Foreground="Black"/>
 
-                    <Border BorderThickness="2" BorderBrush="Black">
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Foreground="{Binding ColourForeground}">
-                                <Run Text="Contrast Ratio: "/>
-                                <Run Text="{Binding InvertedRatio, UpdateSourceTrigger=PropertyChanged}"/>
-                            </TextBlock>
-                            <TextBlock FontSize="14" FontWeight="Bold">
-                                <Run Text="Small Text >= 14pt bold: "/>
-                                <Run Text="{Binding SmallBoldTextResult}"/>
-                            </TextBlock>
-                            <TextBlock FontSize="16">
-                                <Run Text="Small Text &lt; 18pt: "/>
-                                <Run Text="{Binding SmallTextResult}"/>
-                            </TextBlock>
-                            <TextBlock FontSize="18">
-                                <Run Text="Large Text >=18pt: "/>
-                                <Run Text="{Binding LargeTextResult}"/>
-                            </TextBlock>
-                        </StackPanel>
+                    <Label Grid.Row="1" Grid.Column="0" Content="RGB Value: " Background="White" Foreground="Black"/>
+                    <Label Grid.Row="2" Grid.Column="0" Content="Hex Value: " Background="White" Foreground="Black"/>
+                    <Label Grid.Row="3" Grid.Column="0" Content="Colour Name: " Background="White" Foreground="Black"/>
+                    <Label Grid.Row="4" Grid.Column="0" Content="Sample text: " Background="White" Foreground="Black"/>
+                    <Label Grid.Row="5" Grid.Column="0" Content="Contrast Ratio: " Background="White" Foreground="Black"/>
+
+                    <Label Grid.Row="6" Grid.Column="0" Content="AA Large Text (>=18pt) 3:1 " Background="White" Foreground="Black" FontSize="18"/>
+                    <Label Grid.Row="7" Grid.Column="0" Content="AA Large Text (>= 14pt bold) 3:1 " Background="White" Foreground="Black" FontSize="14" FontWeight="Bold"/>
+                    <Label Grid.Row="8" Grid.Column="0" Content="AA Regular Text (&lt; 14pt bold) 4.5:1 " Background="White" Foreground="Black" FontSize="14"/>
+                    <Label Grid.Row="9" Grid.Column="0" Content="AA Regular Text (&lt; 18pt) 4.5:1 " Background="White" Foreground="Black" FontSize="16"/>
+                    <Label Grid.Row="10" Grid.Column="0" Content="AAA Regular Text (&lt; 18pt) 7:1 " Background="White" Foreground="Black" FontSize="16"/>
+
+
+                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RgbColour, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding HexColour, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding NamedColour, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="{Binding InvertedRgbColour, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="2" Grid.Column="2" Text="{Binding InvertedHexColour, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="{Binding InvertedNamedColour, UpdateSourceTrigger=PropertyChanged}" />
+                    <Border Grid.Row="4" Grid.Column="2" Background="{Binding ColourBackground}" BorderBrush="Black" BorderThickness="2" Margin="5" Padding="5">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Text="Red Panda" 
+                                   Foreground="{Binding ColourForeground}" />
                     </Border>
+                    <TextBlock Grid.Row="5" Grid.Column="2" Text="{Binding InvertedRatioText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="6" Grid.Column="2" Text="{Binding InvertedTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="7" Grid.Column="2" Text="{Binding InvertedTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="8" Grid.Column="2" Text="{Binding InvertedTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="9" Grid.Column="2" Text="{Binding InvertedTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="10" Grid.Column="2" Text="{Binding InvertedTestResult3, UpdateSourceTrigger=PropertyChanged}" />
 
-                </StackPanel>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Text="0, 0, 0" />
+                    <TextBlock Grid.Row="2" Grid.Column="3" Text="000000" />
+                    <TextBlock Grid.Row="3" Grid.Column="3" Text="Black" />
+                    <Border Grid.Row="4" Grid.Column="3" Background="{Binding ColourBackground}" BorderBrush="Black" BorderThickness="2" Margin="5" Padding="5">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Text="Red Panda" 
+                                   Foreground="Black" />
+                    </Border>
+                    <TextBlock Grid.Row="5" Grid.Column="3" Text="{Binding BlackRatioText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="6" Grid.Column="3" Text="{Binding BlackTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="7" Grid.Column="3" Text="{Binding BlackTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="8" Grid.Column="3" Text="{Binding BlackTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="9" Grid.Column="3" Text="{Binding BlackTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="10" Grid.Column="3" Text="{Binding BlackTestResult3, UpdateSourceTrigger=PropertyChanged}" />
 
-                <StackPanel Orientation="Vertical" Margin="20">
-                    <Label Content="Inverted Foreground" Background="White" Foreground="Black"/>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Red Green Blue: "/>
-                        <Run Text="{Binding InvertedRgbColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Hex Value: "/>
-                        <Run Text="{Binding InvertedHexColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
-                    <TextBlock Foreground="{Binding ColourForeground}">
-                        <Run Text="Colour Name: "/>
-                        <Run Text="{Binding InvertedNamedColour, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="4" Text="255, 255, 255"/>
+                    <TextBlock Grid.Row="2" Grid.Column="4" Text="FFFFFF"/>
+                    <TextBlock Grid.Row="3" Grid.Column="4" Text="White"/>
+                    <Border Grid.Row="4" Grid.Column="4" Background="{Binding ColourBackground}" BorderBrush="Black" BorderThickness="2" Margin="5" Padding="5">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Text="Red Panda" 
+                                   Foreground="White" />
+                    </Border>
+                    <TextBlock Grid.Row="5" Grid.Column="4" Text="{Binding WhiteRatioText, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="6" Grid.Column="4" Text="{Binding WhiteTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="7" Grid.Column="4" Text="{Binding WhiteTestResult1, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="8" Grid.Column="4" Text="{Binding WhiteTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="9" Grid.Column="4" Text="{Binding WhiteTestResult2, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="10" Grid.Column="4" Text="{Binding WhiteTestResult3, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <TextBlock Foreground="{Binding ContrastForeground}">
-                        <Run Text="Black/White Contrast Ratio: "/>
-                        <Run Text="{Binding ContrastRatio, UpdateSourceTrigger=PropertyChanged}"/>
-                    </TextBlock>
-                </StackPanel>
+
+
+                </Grid>
             </StackPanel>
 
 
             <DockPanel VerticalAlignment="Center" Margin="10">
                 <Label DockPanel.Dock="Left" FontWeight="Bold" Foreground="{Binding ColourForeground}">R:</Label>
                 <TextBox Text="{Binding ColourR, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" Foreground="{Binding ColourForeground}" />
-                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorR" Value="{Binding ColourR}">
+                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="False" Name="slColorR" Value="{Binding ColourR}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="ValueChanged" >
                             <i:InvokeCommandAction Command="{Binding SliderChanged}" />
@@ -115,7 +148,7 @@
             <DockPanel VerticalAlignment="Center" Margin="10">
                 <Label DockPanel.Dock="Left" FontWeight="Bold" Foreground="{Binding ColourForeground}">G:</Label>
                 <TextBox Text="{Binding ColourG, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorG" Value="{Binding ColourG}">
+                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="False" Name="slColorG" Value="{Binding ColourG}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="ValueChanged" >
                             <i:InvokeCommandAction Command="{Binding SliderChanged}" />
@@ -127,7 +160,7 @@
             <DockPanel VerticalAlignment="Center" Margin="10">
                 <Label DockPanel.Dock="Left" FontWeight="Bold" Foreground="{Binding ColourForeground}">B:</Label>
                 <TextBox Text="{Binding ColourB, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorB" Value="{Binding ColourB}">
+                <Slider Minimum="0" Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="False" Name="slColorB" Value="{Binding ColourB}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="ValueChanged" >
                             <i:InvokeCommandAction Command="{Binding SliderChanged}" />

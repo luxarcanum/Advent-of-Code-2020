@@ -49,27 +49,65 @@ namespace MVVMDemo.ViewModels
         private string _invertedNamedColour;
         public string InvertedNamedColour { get => _invertedNamedColour; set => SetProperty(ref _invertedNamedColour, value); }
 
-        private double _invertedRatio;
-        public double InvertedRatio { get => _invertedRatio; set => SetProperty(ref _invertedRatio, value); }
+
         #endregion
 
         #region Contrast black/white
         private SolidColorBrush _contrastForeground;
         public SolidColorBrush ContrastForeground { get => _contrastForeground; set => SetProperty(ref _contrastForeground, value); }
 
-        private double _contrastRatio;
-        public double ContrastRatio { get => _contrastRatio; set => SetProperty(ref _contrastRatio, value); }
+        private string _invertedRatioText;
+        public string InvertedRatioText { get => _invertedRatioText; set => SetProperty(ref _invertedRatioText, value); }
+
+        private string _contrastRatioText;
+        public string ContrastRatioText { get => _contrastRatioText; set => SetProperty(ref _contrastRatioText, value); }
+
+        private string _blackRatioText;
+        public string BlackRatioText { get => _blackRatioText; set => SetProperty(ref _blackRatioText, value); }
+
+        private string _whiteRatioText;
+        public string WhiteRatioText { get => _whiteRatioText; set => SetProperty(ref _whiteRatioText, value); }
         #endregion
 
-        #region Ratios
-        private string _smallBoldTextResult;
-        public string SmallBoldTextResult { get => _smallBoldTextResult; set => SetProperty(ref _smallBoldTextResult, value); }
+        #region Ratio Test Results
+        private string _invertedTestResult1;
+        public string InvertedTestResult1 { get => _invertedTestResult1; set => SetProperty(ref _invertedTestResult1, value); }
 
-        private string _smallTextResult;
-        public string SmallTextResult { get => _smallTextResult; set => SetProperty(ref _smallTextResult, value); }
+        private string _invertedTestResult2;
+        public string InvertedTestResult2 { get => _invertedTestResult2; set => SetProperty(ref _invertedTestResult2, value); }
 
-        private string _largeTextResult;
-        public string LargeTextResult { get => _largeTextResult; set => SetProperty(ref _largeTextResult, value); }
+        private string _invertedTestResult3;
+        public string InvertedTestResult3 { get => _invertedTestResult3; set => SetProperty(ref _invertedTestResult3, value); }
+
+
+        private string _contrastTestResult1;
+        public string ContrastTestResult1 { get => _contrastTestResult1; set => SetProperty(ref _contrastTestResult1, value); }
+
+        private string _contrastTestResult2;
+        public string ContrastTestResult2 { get => _contrastTestResult2; set => SetProperty(ref _contrastTestResult2, value); }
+
+        private string _contrastTestResult3;
+        public string ContrastTestResult3 { get => _contrastTestResult3; set => SetProperty(ref _contrastTestResult3, value); }
+
+
+        private string _blackTestResult1;
+        public string BlackTestResult1 { get => _blackTestResult1; set => SetProperty(ref _blackTestResult1, value); }
+
+        private string _blackTestResult2;
+        public string BlackTestResult2 { get => _blackTestResult2; set => SetProperty(ref _blackTestResult2, value); }
+
+        private string _blackTestResult3;
+        public string BlackTestResult3 { get => _blackTestResult3; set => SetProperty(ref _blackTestResult3, value); }
+
+
+        private string _whiteTestResult1;
+        public string WhiteTestResult1 { get => _whiteTestResult1; set => SetProperty(ref _whiteTestResult1, value); }
+
+        private string _whiteTestResult2;
+        public string WhiteTestResult2 { get => _whiteTestResult2; set => SetProperty(ref _whiteTestResult2, value); }
+
+        private string _whiteTestResult3;
+        public string WhiteTestResult3 { get => _whiteTestResult3; set => SetProperty(ref _whiteTestResult3, value); }
         #endregion
 
         #region List of Colours
@@ -177,15 +215,34 @@ namespace MVVMDemo.ViewModels
             double invertedluminance = Luminance(invertedColour.R, invertedColour.G, invertedColour.B);
             double contrastluminance = Luminance(ContrastForeground.Color.R, ContrastForeground.Color.G, ContrastForeground.Color.B);
 
-            InvertedRatio = backluminance > invertedluminance ? ((invertedluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (invertedluminance + 0.05));
-            ContrastRatio = backluminance > contrastluminance ? ((contrastluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (contrastluminance + 0.05));
+            double blackluminance = Luminance(0, 0, 0);
+            double whiteluminance = Luminance(255, 255, 255);
 
-            string textRatio1 = Math.Round(1d / InvertedRatio, 3).ToString() + ":1 ";
-            string textRatio2 = Math.Round(1d / ContrastRatio, 3).ToString() + ":1 ";
+            double InvertedRatio = backluminance > invertedluminance ? ((invertedluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (invertedluminance + 0.05));
+            double ContrastRatio = backluminance > contrastluminance ? ((contrastluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (contrastluminance + 0.05));
+            double BlackRatio = backluminance > blackluminance ? ((blackluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (blackluminance + 0.05));
+            double WhiteRatio = backluminance > whiteluminance ? ((whiteluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (whiteluminance + 0.05));
 
-            SmallBoldTextResult = textRatio1 + (InvertedRatio < (1d / 3d) ? "Pass" : "Fail");
-            SmallTextResult = textRatio1 + (InvertedRatio < (1d / 4.5d) ? "Pass" : "Fail");
-            LargeTextResult = textRatio1 + (InvertedRatio < (1d / 7d) ? "Pass" : "Fail");
+            InvertedRatioText = Math.Round(1d / InvertedRatio, 3).ToString() + ":1 ";
+            ContrastRatioText = Math.Round(1d / ContrastRatio, 3).ToString() + ":1 ";
+            BlackRatioText = Math.Round(1d / BlackRatio, 3).ToString() + ":1 ";
+            WhiteRatioText = Math.Round(1d / WhiteRatio, 3).ToString() + ":1 ";
+
+            InvertedTestResult1 = InvertedRatio < (1d / 3d) ? "Pass" : "Fail";
+            InvertedTestResult2 = InvertedRatio < (1d / 4.5d) ? "Pass" : "Fail";
+            InvertedTestResult3 = InvertedRatio < (1d / 7d) ? "Pass" : "Fail";
+
+            ContrastTestResult1 = ContrastRatio < (1d / 3d) ? "Pass" : "Fail";
+            ContrastTestResult2 = ContrastRatio < (1d / 4.5d) ? "Pass" : "Fail";
+            ContrastTestResult3 = ContrastRatio < (1d / 7d) ? "Pass" : "Fail";
+
+            BlackTestResult1 = BlackRatio < (1d / 3d) ? "Pass" : "Fail";
+            BlackTestResult2 = BlackRatio < (1d / 4.5d) ? "Pass" : "Fail";
+            BlackTestResult3 = BlackRatio < (1d / 7d) ? "Pass" : "Fail";
+
+            WhiteTestResult1 = WhiteRatio < (1d / 3d) ? "Pass" : "Fail";
+            WhiteTestResult2 = WhiteRatio < (1d / 4.5d) ? "Pass" : "Fail";
+            WhiteTestResult3 = WhiteRatio < (1d / 7d) ? "Pass" : "Fail";
 
         }
 
