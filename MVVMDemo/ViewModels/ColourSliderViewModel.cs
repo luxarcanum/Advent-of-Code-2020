@@ -11,15 +11,24 @@ namespace MVVMDemo.ViewModels
     class ColourSliderViewModel : BindableBase
     {
         #region properties
-        #region Individual values for slider
-        private byte _colourR;
-        public byte ColourR { get => _colourR; set => SetProperty(ref _colourR, value); }
+        #region Individual values for sliders
+        private byte _backgroundColourR;
+        public byte BackgroundColourR { get => _backgroundColourR; set => SetProperty(ref _backgroundColourR, value); }
 
-        private byte _colourG;
-        public byte ColourG { get => _colourG; set => SetProperty(ref _colourG, value); }
+        private byte _backgroundColourG;
+        public byte BackgroundColourG { get => _backgroundColourG; set => SetProperty(ref _backgroundColourG, value); }
 
-        private byte _colourB;
-        public byte ColourB { get => _colourB; set => SetProperty(ref _colourB, value); }
+        private byte _backgroundColourB;
+        public byte BackgroundColourB { get => _backgroundColourB; set => SetProperty(ref _backgroundColourB, value); }
+
+        private byte _foregroundColourR;
+        public byte ForegroundColourR { get => _foregroundColourR; set => SetProperty(ref _foregroundColourR, value); }
+
+        private byte _foregroundColourG;
+        public byte ForegroundColourG { get => _foregroundColourG; set => SetProperty(ref _foregroundColourG, value); }
+
+        private byte _foregroundColourB;
+        public byte ForegroundColourB { get => _foregroundColourB; set => SetProperty(ref _foregroundColourB, value); }
         #endregion
 
         #region Base background colours
@@ -37,8 +46,8 @@ namespace MVVMDemo.ViewModels
         #endregion
 
         #region Inverse Colours
-        private SolidColorBrush _colourForeground;
-        public SolidColorBrush ColourForeground { get => _colourForeground; set => SetProperty(ref _colourForeground, value); }
+        private SolidColorBrush _invertedForeground;
+        public SolidColorBrush InvertedForeground { get => _invertedForeground; set => SetProperty(ref _invertedForeground, value); }
 
         private string _invertedRgbColour;
         public string InvertedRgbColour { get => _invertedRgbColour; set => SetProperty(ref _invertedRgbColour, value); }
@@ -48,14 +57,28 @@ namespace MVVMDemo.ViewModels
 
         private string _invertedNamedColour;
         public string InvertedNamedColour { get => _invertedNamedColour; set => SetProperty(ref _invertedNamedColour, value); }
-
-
         #endregion
 
         #region Contrast black/white
         private SolidColorBrush _contrastForeground;
         public SolidColorBrush ContrastForeground { get => _contrastForeground; set => SetProperty(ref _contrastForeground, value); }
+        #endregion
 
+        #region Chosen Colours
+        private SolidColorBrush _chosenForeground;
+        public SolidColorBrush ChosenForeground { get => _chosenForeground; set => SetProperty(ref _chosenForeground, value); }
+
+        private string _chosenRgbColour;
+        public string ChosenRgbColour { get => _chosenRgbColour; set => SetProperty(ref _chosenRgbColour, value); }
+
+        private string _chosenHexColour;
+        public string ChosenHexColour { get => _chosenHexColour; set => SetProperty(ref _chosenHexColour, value); }
+
+        private string _chosenNamedColour;
+        public string ChosenNamedColour { get => _chosenNamedColour; set => SetProperty(ref _chosenNamedColour, value); }
+        #endregion
+
+        #region Ratio Text Fields
         private string _invertedRatioText;
         public string InvertedRatioText { get => _invertedRatioText; set => SetProperty(ref _invertedRatioText, value); }
 
@@ -67,6 +90,9 @@ namespace MVVMDemo.ViewModels
 
         private string _whiteRatioText;
         public string WhiteRatioText { get => _whiteRatioText; set => SetProperty(ref _whiteRatioText, value); }
+
+        private string _chosenRatioText;
+        public string ChosenRatioText { get => _chosenRatioText; set => SetProperty(ref _chosenRatioText, value); }
         #endregion
 
         #region Ratio Test Results
@@ -108,20 +134,35 @@ namespace MVVMDemo.ViewModels
 
         private string _whiteTestResult3;
         public string WhiteTestResult3 { get => _whiteTestResult3; set => SetProperty(ref _whiteTestResult3, value); }
+
+
+        private string _chosenTestResult1;
+        public string ChosenTestResult1 { get => _chosenTestResult1; set => SetProperty(ref _chosenTestResult1, value); }
+
+        private string _chosenTestResult2;
+        public string ChosenTestResult2 { get => _chosenTestResult2; set => SetProperty(ref _chosenTestResult2, value); }
+
+        private string _chosenTestResult3;
+        public string ChosenTestResult3 { get => _chosenTestResult3; set => SetProperty(ref _chosenTestResult3, value); }
         #endregion
 
         #region List of Colours
         private List<ColorInfo> _listOfColours;
         public List<ColorInfo> ListOfColours { get => _listOfColours; set => SetProperty(ref _listOfColours, value); }
 
-        private ColorInfo _selectedColour;
-        public ColorInfo SelectedColour { get => _selectedColour; set => SetProperty(ref _selectedColour, value); }
+        private ColorInfo _selectedBackgroundColour;
+        public ColorInfo SelectedBackgroundColour { get => _selectedBackgroundColour; set => SetProperty(ref _selectedBackgroundColour, value); }
+
+        private ColorInfo _selectedForegroundColour;
+        public ColorInfo SelectedForegroundColour { get => _selectedForegroundColour; set => SetProperty(ref _selectedForegroundColour, value); }
         #endregion
         #endregion
 
         #region Command Properties
-        public ICommand SliderChanged { get; set; }
-        public ICommand ColourSelected { get; set; }
+        public ICommand BackgroundSliderChanged { get; set; }
+        public ICommand ForegroundSliderChanged { get; set; }
+        public ICommand BackgroundColourSelected { get; set; }
+        public ICommand ForegroundColourSelected { get; set; }
 
         #endregion
 
@@ -134,11 +175,7 @@ namespace MVVMDemo.ViewModels
         #endregion
 
         #region Methods
-        public void LoadCommands()
-        {
-            SliderChanged = new RelayCommand(ColorSlider_ValueChanged);
-            ColourSelected = new RelayCommand(ColourSelectedCommand);
-        }
+
 
         public void GetColourNames()
         {
@@ -190,43 +227,59 @@ namespace MVVMDemo.ViewModels
             }
             return colorArray[0] * 0.2126 + colorArray[1] * 0.7152 + colorArray[2] * 0.0722;
         }
-
         #endregion
 
-
         #region Command Methods
+        public void LoadCommands()
+        {
+            BackgroundSliderChanged = new RelayCommand(ColorSlider_ValueChanged);
+            ForegroundSliderChanged = new RelayCommand(ColorSlider_ValueChanged);
+            BackgroundColourSelected = new RelayCommand(BackgroundColourSelectedCommand);
+            ForegroundColourSelected = new RelayCommand(ForegroundColourSelectedCommand);
+        }
+
         private void ColorSlider_ValueChanged()
         {
-            Color colour = Color.FromRgb((byte)ColourR, (byte)ColourG, (byte)ColourB);
+            Color colour = Color.FromRgb((byte)BackgroundColourR, (byte)BackgroundColourG, (byte)BackgroundColourB);
             ColourBackground = new SolidColorBrush(colour);
-            RgbColour = ColourR.ToString() + ", " + ColourG.ToString() + ", " + ColourB.ToString();
+            RgbColour = BackgroundColourR.ToString() + ", " + BackgroundColourG.ToString() + ", " + BackgroundColourB.ToString();
             HexColour = GetHexOfColour(colour);
             NamedColour = GetNameOfColour(colour);
 
-            Color invertedColour = Color.FromRgb((byte)(255 - ColourR), (byte)(255 - ColourG), (byte)(255 - ColourB));
-            ColourForeground = new SolidColorBrush(invertedColour);
+            Color invertedColour = Color.FromRgb((byte)(255 - BackgroundColourR), (byte)(255 - BackgroundColourG), (byte)(255 - BackgroundColourB));
+            InvertedForeground = new SolidColorBrush(invertedColour);
             InvertedRgbColour = invertedColour.R.ToString() + ", " + invertedColour.G.ToString() + ", " + invertedColour.B.ToString();
             InvertedHexColour = GetHexOfColour(invertedColour);
             InvertedNamedColour = GetNameOfColour(invertedColour);
 
             ContrastForeground = new SolidColorBrush(PerceivedBrightness(colour) > 130 ? Color.FromRgb(0, 0, 0) : Color.FromRgb(255, 255, 255));
 
+            Color chosenColour = Color.FromRgb((byte)ForegroundColourR, (byte)ForegroundColourG, (byte)ForegroundColourB);
+            ChosenForeground = new SolidColorBrush(chosenColour);
+            ChosenRgbColour = ForegroundColourR.ToString() + ", " + ForegroundColourG.ToString() + ", " + ForegroundColourB.ToString();
+            ChosenHexColour = GetHexOfColour(chosenColour);
+            ChosenNamedColour = GetNameOfColour(chosenColour);
+
+
             double backluminance = Luminance(colour.R, colour.G, colour.B);
+
             double invertedluminance = Luminance(invertedColour.R, invertedColour.G, invertedColour.B);
             double contrastluminance = Luminance(ContrastForeground.Color.R, ContrastForeground.Color.G, ContrastForeground.Color.B);
-
             double blackluminance = Luminance(0, 0, 0);
             double whiteluminance = Luminance(255, 255, 255);
+            double chosenluminance = Luminance(chosenColour.R, chosenColour.G, chosenColour.B);
 
             double InvertedRatio = backluminance > invertedluminance ? ((invertedluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (invertedluminance + 0.05));
             double ContrastRatio = backluminance > contrastluminance ? ((contrastluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (contrastluminance + 0.05));
             double BlackRatio = backluminance > blackluminance ? ((blackluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (blackluminance + 0.05));
             double WhiteRatio = backluminance > whiteluminance ? ((whiteluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (whiteluminance + 0.05));
+            double ChosenRatio = backluminance > chosenluminance ? ((chosenluminance + 0.05) / (backluminance + 0.05)) : ((backluminance + 0.05) / (chosenluminance + 0.05));
 
-            InvertedRatioText = Math.Round(1d / InvertedRatio, 3).ToString() + ":1 ";
-            ContrastRatioText = Math.Round(1d / ContrastRatio, 3).ToString() + ":1 ";
-            BlackRatioText = Math.Round(1d / BlackRatio, 3).ToString() + ":1 ";
-            WhiteRatioText = Math.Round(1d / WhiteRatio, 3).ToString() + ":1 ";
+            InvertedRatioText = Math.Round(1d / InvertedRatio, 3).ToString() + ":1";
+            ContrastRatioText = Math.Round(1d / ContrastRatio, 3).ToString() + ":1";
+            BlackRatioText = Math.Round(1d / BlackRatio, 3).ToString() + ":1";
+            WhiteRatioText = Math.Round(1d / WhiteRatio, 3).ToString() + ":1";
+            ChosenRatioText = Math.Round(1d / ChosenRatio, 3).ToString() + ":1";
 
             InvertedTestResult1 = InvertedRatio < (1d / 3d) ? "Pass" : "Fail";
             InvertedTestResult2 = InvertedRatio < (1d / 4.5d) ? "Pass" : "Fail";
@@ -244,38 +297,27 @@ namespace MVVMDemo.ViewModels
             WhiteTestResult2 = WhiteRatio < (1d / 4.5d) ? "Pass" : "Fail";
             WhiteTestResult3 = WhiteRatio < (1d / 7d) ? "Pass" : "Fail";
 
+            ChosenTestResult1 = ChosenRatio < (1d / 3d) ? "Pass" : "Fail";
+            ChosenTestResult2 = ChosenRatio < (1d / 4.5d) ? "Pass" : "Fail";
+            ChosenTestResult3 = ChosenRatio < (1d / 7d) ? "Pass" : "Fail";
         }
 
-        private void ColourSelectedCommand()
+        private void BackgroundColourSelectedCommand()
         {
-            System.Drawing.Color colour = System.Drawing.ColorTranslator.FromHtml(SelectedColour.HexValue);
-            ColourR = colour.R;
-            ColourG = colour.G;
-            ColourB = colour.B;
+            System.Drawing.Color colour = System.Drawing.ColorTranslator.FromHtml(SelectedBackgroundColour.HexValue);
+            BackgroundColourR = colour.R;
+            BackgroundColourG = colour.G;
+            BackgroundColourB = colour.B;
         }
 
-
+        private void ForegroundColourSelectedCommand()
+        {
+            System.Drawing.Color colour = System.Drawing.ColorTranslator.FromHtml(SelectedForegroundColour.HexValue);
+            ForegroundColourR = colour.R;
+            ForegroundColourG = colour.G;
+            ForegroundColourB = colour.B;
+        }
         #endregion
 
-        //public class ColorInfo
-        //{
-        //    public string ColorName { get; set; }
-        //    public Color Color { get; set; }
-
-        //    public SolidColorBrush SampleBrush
-        //    {
-        //        get { return new SolidColorBrush(Color); }
-        //    }
-        //    public string HexValue
-        //    {
-        //        get { return Color.ToString(); }
-        //    }
-
-        //    public ColorInfo(string color_name, Color color)
-        //    {
-        //        ColorName = color_name;
-        //        Color = color;
-        //    }
-        //}
     }
 }
