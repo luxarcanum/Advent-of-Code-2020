@@ -13,8 +13,6 @@ namespace MVVMDemo.Models
         private int _module3;
         private int _module4;
 
-
-
         [Required]
         public string FirstName
         {

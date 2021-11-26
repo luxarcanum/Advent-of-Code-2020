@@ -1,0 +1,196 @@
+﻿<UserControl x:Class="MVVMDemo.Views.InputFormView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MVVMDemo.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
+             xmlns:data = "clr-namespace:MVVMDemo.Models" 
+             xmlns:vml = "clr-namespace:MVVMDemo.VML" xmlns:fa5="http://schemas.fontawesome.com/icons/"
+             vml:ViewModelLocator.AutoHookedUpViewModel = "True"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="ID"/>
+                    <TextBox AutomationProperties.Name="ID" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Id}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Forename"/>
+                    <TextBox Text="{Binding CurrentCustomer.Forename, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="200">
+                        <Validation.ErrorTemplate>
+                            <ControlTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!-- Placeholder for the TextBox itself -->
+                                    <AdornedElementPlaceholder x:Name="textBox"/>
+                                    <TextBlock Margin="10" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+                                </StackPanel>
+                            </ControlTemplate>
+                        </Validation.ErrorTemplate>
+                    </TextBox>
+                    <!--<TextBox AutomationProperties.Name="Enter Forename" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Forename}"
+                             Style="{DynamicResource TextBoxNormal}"/>-->
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Surname"/>
+                    <TextBox AutomationProperties.Name="Enter Surname" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Surname}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Discount"/>
+                    <TextBox AutomationProperties.Name="Enter Discount" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Discount}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100" 
+                           Content="Address"/>
+                    <TextBox AutomationProperties.Name="Enter Address" 
+                             Width="200"
+                             Height="100"
+                             TextWrapping="Wrap" AcceptsReturn="True"
+                             Text="{Binding CurrentCustomer.Address}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Email"/>
+                    <TextBox AutomationProperties.Name="Enter Email Address" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Email}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Margin="10">
+
+                <Button Style="{StaticResource BasicButton}"
+                    Command="{Binding NewCustomerCommand}">
+                    <TextBlock ToolTip="Clear customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                        <fa5:FontAwesome Icon="Solid_Recycle" FontSize="50" Foreground="Black"/>
+                        <Run Text="Clear Customer Data" FontSize="24" BaselineAlignment="Center" />
+                    </TextBlock>
+                </Button>
+                <Button Style="{StaticResource BasicButton}"
+                    Command="{Binding SaveCustomerCommand}">
+                    <TextBlock ToolTip="Save customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                        <fa5:FontAwesome Icon="Regular_Save" FontSize="50" Foreground="Black"/>
+                        <Run Text="Save Customer Data" FontSize="24" BaselineAlignment="Center" />
+                    </TextBlock>
+                </Button>
+                <Button Style="{StaticResource BasicButton}"
+                    Command="{Binding ImportCustomersCommand}">
+                    <TextBlock ToolTip="Import customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                        <fa5:FontAwesome Icon="Solid_FileImport" FontSize="50" Foreground="Black"/>
+                        <Run Text="Import Customer Data" FontSize="24" BaselineAlignment="Center" />
+                    </TextBlock>
+                </Button>
+                <Button Style="{StaticResource BasicButton}"
+                    Command="{Binding ExportCustomersCommand}">
+                    <TextBlock ToolTip="Export customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                        <fa5:FontAwesome Icon="Solid_FileExport" FontSize="50" Foreground="Black"/>
+                        <Run Text="Export Customer Data" FontSize="24" BaselineAlignment="Center" />
+                    </TextBlock>
+                </Button>
+
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Grid.Row="1">
+            <ListView ItemsSource="{Binding Path=CustomerList}" 
+                      SelectedItem="{Binding SelectedCustomer}"
+                      Background="FloralWhite" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Id}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Forename">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Forename}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Surname">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Surname}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Fullname">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Fullname}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Discount">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Discount}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Address">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Address}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Email">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Path=Email}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+
+                    </GridView>
+                </ListView.View>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged" >
+                        <i:InvokeCommandAction Command="{Binding SelectedCustomerCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListView>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

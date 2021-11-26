@@ -41,6 +41,11 @@
         <DataTemplate DataType="{x:Type viewModels:ScalableViewBoxViewModel}">
             <views:ScalableViewBoxView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:InputFormViewModel}">
+            <views:InputFormView/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid Style="{DynamicResource GridMainwindow}">
@@ -69,6 +74,9 @@
                     <MenuItem x:Name="mnuScalableViewBox" Header="Scalable ViewBox"
                           Command="{Binding CmdNavigation}" 
                           CommandParameter="scalableViewBox"/>
+                    <MenuItem Header="Input Form"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="inputForm"/>
                 </MenuItem>
 
 
@@ -104,6 +112,10 @@
                                 Command="{Binding CmdNavigation}" 
                                 CommandParameter="Font26"/>
                     </MenuItem>
+                    <Separator/>
+                    <MenuItem x:Name="mnuDisplaySettings" Header="Display Settings" 
+                                Command="{Binding CmdNavigation}" 
+                                CommandParameter="displaySettings"/>
                 </MenuItem>
 
                 <MenuItem x:Name="mnuClose" Header="Close"

@@ -15,6 +15,7 @@ namespace MVVMDemo.ViewModels
 
         #region View Models
         private NavigationViewModel navigationViewModel = new NavigationViewModel();
+        private DisplaySettingsViewModel displaySettingsViewModel = new DisplaySettingsViewModel();
 
         private FontAwesomeViewModel fontAwesomeViewModel = new FontAwesomeViewModel();
         private StudentViewModel studentViewModel = new StudentViewModel();
@@ -22,6 +23,7 @@ namespace MVVMDemo.ViewModels
         private SearchableListViewModel searchableListViewModel = new SearchableListViewModel();
         private ColourSliderViewModel colourSliderViewModel = new ColourSliderViewModel();
         private ScalableViewBoxViewModel scalableViewBoxViewModel = new ScalableViewBoxViewModel();
+        private InputFormViewModel inputFormViewModel = new InputFormViewModel();
         #endregion
 
 
@@ -77,6 +79,10 @@ namespace MVVMDemo.ViewModels
                 case "scalableViewBox":
                     CurrentViewModel = scalableViewBoxViewModel;
                     break;
+                case "inputForm":
+                    CurrentViewModel = inputFormViewModel;
+                    break;
+
 
                 case "about":
                     MnuAbout();
@@ -111,7 +117,9 @@ namespace MVVMDemo.ViewModels
                 case "Font26":
                     ChangeFontsize("FontSize26");
                     break;
-
+                case "displaySettings":
+                    ExecuteDisplaySettingsView();
+                    break;
                 case "close":
                     MnuClose();
                     break;
@@ -175,6 +183,15 @@ namespace MVVMDemo.ViewModels
         #endregion
 
         #region Accessability Themes
+        private void ExecuteDisplaySettingsView()
+        {
+            DisplaySettingsView displaySettingsView = new DisplaySettingsView();
+            {
+                displaySettingsView.DataContext = new DisplaySettingsViewModel();
+            };
+            displaySettingsView.ShowDialog();
+        }
+
 
         /// <summary> ChangeStyle
         /// Changes the xaml style file to the named theme file.

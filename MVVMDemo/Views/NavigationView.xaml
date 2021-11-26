@@ -20,7 +20,6 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <!-- Lifetime Grossing -->
         <StackPanel Grid.Row="0" Grid.Column="0">
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
@@ -73,7 +72,16 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-
+                    <Label Content="Input Form Fluid Validation"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="inputForm">
+                        <TextBlock ToolTip="input Form." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Brands_Instagram" FontSize="50" Foreground="Black"/>
+                            <Run Text="Input Form" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </Border>
         </StackPanel>
