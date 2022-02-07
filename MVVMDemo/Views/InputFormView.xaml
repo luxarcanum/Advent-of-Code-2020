@@ -3,11 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MVVMDemo.Views"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:local="clr-namespace:MVVMDemo.Views"
              xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
              xmlns:data = "clr-namespace:MVVMDemo.Models" 
              xmlns:vml = "clr-namespace:MVVMDemo.VML" xmlns:fa5="http://schemas.fontawesome.com/icons/"
+             d:DataContext="{d:DesignInstance Type=viewModel:InputFormViewModel}"
              vml:ViewModelLocator.AutoHookedUpViewModel = "True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -16,83 +17,10 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
+        
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <StackPanel Orientation="Vertical" Margin="10">
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100"
-                           Content="ID"/>
-                    <TextBox AutomationProperties.Name="ID" 
-                             Width="200"
-                             Text="{Binding CurrentCustomer.Id}"
-                             Style="{DynamicResource TextBoxNormal}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100"
-                           Content="Forename"/>
-                    <TextBox Text="{Binding CurrentCustomer.Forename, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Width="200">
-                        <Validation.ErrorTemplate>
-                            <ControlTemplate>
-                                <StackPanel Orientation="Horizontal">
-                                    <!-- Placeholder for the TextBox itself -->
-                                    <AdornedElementPlaceholder x:Name="textBox"/>
-                                    <TextBlock Margin="10" Text="{Binding [0].ErrorContent}" Foreground="Red"/>
-                                </StackPanel>
-                            </ControlTemplate>
-                        </Validation.ErrorTemplate>
-                    </TextBox>
-                    <!--<TextBox AutomationProperties.Name="Enter Forename" 
-                             Width="200"
-                             Text="{Binding CurrentCustomer.Forename}"
-                             Style="{DynamicResource TextBoxNormal}"/>-->
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100"
-                           Content="Surname"/>
-                    <TextBox AutomationProperties.Name="Enter Surname" 
-                             Width="200"
-                             Text="{Binding CurrentCustomer.Surname}"
-                             Style="{DynamicResource TextBoxNormal}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100"
-                           Content="Discount"/>
-                    <TextBox AutomationProperties.Name="Enter Discount" 
-                             Width="200"
-                             Text="{Binding CurrentCustomer.Discount}"
-                             Style="{DynamicResource TextBoxNormal}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100" 
-                           Content="Address"/>
-                    <TextBox AutomationProperties.Name="Enter Address" 
-                             Width="200"
-                             Height="100"
-                             TextWrapping="Wrap" AcceptsReturn="True"
-                             Text="{Binding CurrentCustomer.Address}"
-                             Style="{DynamicResource TextBoxNormal}"/>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <Label Style="{DynamicResource LabelHeaderRight}" 
-                           Width="100"
-                           Content="Email"/>
-                    <TextBox AutomationProperties.Name="Enter Email Address" 
-                             Width="200"
-                             Text="{Binding CurrentCustomer.Email}"
-                             Style="{DynamicResource TextBoxNormal}"/>
-                </StackPanel>
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Margin="10">
-
                 <Button Style="{StaticResource BasicButton}"
                     Command="{Binding NewCustomerCommand}">
                     <TextBlock ToolTip="Clear customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
@@ -118,10 +46,86 @@
                     Command="{Binding ExportCustomersCommand}">
                     <TextBlock ToolTip="Export customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
                         <fa5:FontAwesome Icon="Solid_FileExport" FontSize="50" Foreground="Black"/>
-                        <Run Text="Export Customer Data" FontSize="24" BaselineAlignment="Center" />
+                        <Run Text="Export Customer Data" FontSize="24" BaselineAlignment="Center"/>
                     </TextBlock>
                 </Button>
 
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="10">
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="ID"/>
+                    <TextBox AutomationProperties.Name="ID" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.ID}"
+                             Style="{DynamicResource TextBoxNormal}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Tax Reference"/>
+
+                    <TextBox AutomationProperties.Name="Enter TaxReference" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.TaxReference, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{DynamicResource InputTextBox}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Surname"/>
+                    <TextBox AutomationProperties.Name="Enter Surname" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Surname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{DynamicResource InputTextBox}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Discount"/>
+                    <TextBox AutomationProperties.Name="Enter Discount" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Discount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{DynamicResource InputTextBox}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100" 
+                           Content="Address"/>
+                    <TextBox AutomationProperties.Name="Enter Address" 
+                             Width="200"
+                             Height="100"
+                             TextWrapping="Wrap" AcceptsReturn="True"
+                             Text="{Binding CurrentCustomer.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{DynamicResource InputTextBox}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Style="{DynamicResource LabelHeaderRight}" 
+                           Width="100"
+                           Content="Email"/>
+                    <TextBox AutomationProperties.Name="Enter Email Address" 
+                             Width="200"
+                             Text="{Binding CurrentCustomer.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                             Style="{DynamicResource InputTextBox}"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" Margin="10" Width="50">
+            </StackPanel>
+           
+
+            
+            <StackPanel Orientation="Vertical" Margin="10" Width="200">
+                <Label Content="Error Log" Visibility="{Binding CustomerHasErrors}" Style="{DynamicResource LabelHeader}"/>
+
+                <TextBlock Text="{Binding CustomerErrorList}" Visibility="{Binding CustomerHasErrors}" Style="{DynamicResource TextBlockLabel}" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>
 
@@ -134,14 +138,14 @@
                         <GridViewColumn Header="ID">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding Path=Id}"/>
+                                    <TextBox Text="{Binding Path=ID}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Forename">
+                        <GridViewColumn Header="TaxReference">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding Path=Forename}"/>
+                                    <TextBox Text="{Binding Path=TaxReference}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -149,13 +153,6 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBox Text="{Binding Path=Surname}"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Fullname">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBox Text="{Binding Path=Fullname}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

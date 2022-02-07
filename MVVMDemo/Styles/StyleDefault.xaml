@@ -210,4 +210,59 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="InputTextBox" TargetType="TextBox">
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Background" Value="{DynamicResource PrimaryLighter}" />
+        <Setter Property="FontSize" Value="{DynamicResource BaseFontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource FontPrimary}" />
+        <Setter Property="Focusable" Value="True" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource PrimaryDarker}" />
+        <!-- Validation Error: show red circle with exclamation mark to the right of the textbox -->
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="true">
+                        <!-- Display tooltip with error info when mouseover the icon -->
+                        <StackPanel Orientation="Horizontal" 
+                                    DockPanel.Dock="Right" Margin="3,0,0,0"
+                                    ToolTip="{Binding ElementName=validationAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <Border Background="{DynamicResource ErrorColour}"  Width="{DynamicResource BaseFontSize}" Height="{DynamicResource BaseFontSize}" CornerRadius="13">
+                                <TextBlock Text="!" 
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                           FontSize="{DynamicResource BaseFontSize}"
+                                           FontWeight="Bold" 
+                                           Foreground="{DynamicResource FontPrimary}" />
+                            </Border>
+                            <TextBlock Text="{Binding [0].ErrorContent}" 
+                                       FontSize="{DynamicResource BaseFontSize}"
+                                       Foreground="{DynamicResource ErrorColour}" 
+                                       VerticalAlignment="Center" 
+                                       MinWidth="100"                                      
+                                       MaxWidth="300"
+                                       TextWrapping="Wrap" 
+                                       HorizontalAlignment="Stretch"
+                                       Margin="5,0,0,0"/>
+                        </StackPanel>
+                        <!-- Border round text Box-->
+                        <AdornedElementPlaceholder Name="validationAdorner" VerticalAlignment="Center" >
+                            <Border BorderBrush="{DynamicResource ErrorColour}" BorderThickness="1.25" />
+                        </AdornedElementPlaceholder>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <!-- Validation Error Tooltip when mouseover a textbox with errors -->
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError" Value="True">
+                <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+            <Trigger Property="IsReadOnly" Value="True">
+                <Setter Property="Background" Value="{DynamicResource PrimaryLighter}"/>
+                <Setter Property="Foreground" Value="{DynamicResource FontPrimary}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>

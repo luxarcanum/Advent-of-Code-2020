@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.IO;
+using FluentValidation.Results;
 
 namespace MVVMDemo.ViewModels
 {
@@ -39,8 +40,15 @@ namespace MVVMDemo.ViewModels
 
         private List<Customer> _customerList;
         public List<Customer> CustomerList { get => _customerList; set => SetProperty(ref _customerList, value); }
+
+        private string _customerHasErrors;
+        public string CustomerHasErrors { get => _customerHasErrors; set => SetProperty(ref _customerHasErrors, value); }
+        private string _customerErrorList;
+        public string CustomerErrorList { get => _customerErrorList; set => SetProperty(ref _customerErrorList, value); }
         #endregion
 
+        private CustomerValidator _customerValidator;
+        public CustomerValidator Validation { get => _customerValidator; set => SetProperty(ref _customerValidator, value); }
 
         #region for persistance
         public string FilePathName = @"D:\Users\U.6074887\Outputs\CustomerList.json";
@@ -61,6 +69,8 @@ namespace MVVMDemo.ViewModels
         {
             CustomerList = new List<Customer>();
             CurrentCustomer = new Customer();
+
+            Validation = new CustomerValidator();
             LoadCommands();
         }
         #endregion
@@ -78,8 +88,19 @@ namespace MVVMDemo.ViewModels
         #endregion
 
         #region Command Methods
-        private bool CanExecuteSaveCustomerCommand()
+        private bool CanExecuteSaveCustomerCommand()    
         {
+            if (CurrentCustomer == null) return false;
+            //CustomerValidator customerValidator = new CustomerValidator();
+            ValidationResult results = Validation.Validate(CurrentCustomer);
+
+            if (!results.IsValid)
+            {
+                CustomerErrorList = results.ToString("\n\n");
+                CustomerHasErrors = "Visible";
+                return false;
+            }
+            CustomerHasErrors = "Collapsed";
             return true;
         }
         private void ExecuteSaveCustomerCommand()
