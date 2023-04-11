@@ -16,7 +16,7 @@ namespace MVVMDemo.ViewModels
         #region View Models
         private NavigationViewModel navigationViewModel = new NavigationViewModel();
         private DisplaySettingsViewModel displaySettingsViewModel = new DisplaySettingsViewModel();
-
+        private DataGridViewModel dataGridViewModel = new DataGridViewModel();
         private FontAwesomeViewModel fontAwesomeViewModel = new FontAwesomeViewModel();
         private StudentViewModel studentViewModel = new StudentViewModel();
         private AccessibleViewModel accessibleViewModel = new AccessibleViewModel();
@@ -82,7 +82,9 @@ namespace MVVMDemo.ViewModels
                 case "inputForm":
                     CurrentViewModel = inputFormViewModel;
                     break;
-
+                case "dataGrid":
+                    CurrentViewModel = dataGridViewModel;
+                    break;
 
                 case "about":
                     MnuAbout();

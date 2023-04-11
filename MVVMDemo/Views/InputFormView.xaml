@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
              xmlns:local="clr-namespace:MVVMDemo.Views"
              xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
              xmlns:data = "clr-namespace:MVVMDemo.Models" 
@@ -17,9 +17,27 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        
-        
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
+
+        <StackPanel Orientation="Vertical" Grid.Row="0">
+            <TextBox AutomationProperties.Name="Enter Discount" 
+                    Width="800"
+                    Text="{Binding InputPath}"
+                    Style="{DynamicResource InputTextBox}"/>
+
+            <Button Style="{StaticResource BasicButton}"
+                    Command="{Binding DoStuff}">
+                <TextBlock ToolTip="Clear customer Data." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                        <fa5:FontAwesome Icon="Solid_Recycle" FontSize="50" Foreground="Black"/>
+                        <Run Text="DoStuff" FontSize="24" BaselineAlignment="Center" />
+                </TextBlock>
+            </Button>
+
+            <TextBlock Text="{Binding OutputText}" TextWrapping="Wrap" Width="800"/>
+
+
+        </StackPanel>
+
+        <!--<StackPanel Orientation="Horizontal" Grid.Row="0">
             <StackPanel Orientation="Vertical" Margin="10">
                 <Button Style="{StaticResource BasicButton}"
                     Command="{Binding NewCustomerCommand}">
@@ -187,7 +205,7 @@
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
             </ListView>
-        </StackPanel>
+        </StackPanel>-->
 
     </Grid>
 </UserControl>

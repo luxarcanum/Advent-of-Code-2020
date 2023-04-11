@@ -46,6 +46,10 @@
             <views:InputFormView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:DataGridViewModel}">
+            <views:DataGridView/>
+        </DataTemplate>
+
     </Window.Resources>
 
     <Grid Style="{DynamicResource GridMainwindow}">
@@ -77,6 +81,9 @@
                     <MenuItem Header="Input Form"
                           Command="{Binding CmdNavigation}" 
                           CommandParameter="inputForm"/>
+                    <MenuItem Header="DataGrid Test"
+                          Command="{Binding CmdNavigation}" 
+                          CommandParameter="dataGrid"/>
                 </MenuItem>
 
 

@@ -138,7 +138,16 @@
             <Border Style="{DynamicResource ContentBorder}">
                 <StackPanel Orientation="Vertical"
                             Style="{DynamicResource ContainerStackPanel}">
-
+                    <Label Content="DataGrid Test"
+                           Style="{DynamicResource LabelHeader}"/>
+                    <Button Style="{StaticResource BasicButton}"
+                            Command="{Binding CmdNavigation}" 
+                            CommandParameter="dataGrid">
+                        <TextBlock ToolTip="DataGrid Test." VerticalAlignment="Center" Style="{DynamicResource TextBlockLabel}">
+                            <fa5:FontAwesome Icon="Solid_GripLines" FontSize="50" Foreground="Black"/>
+                            <Run Text="DataGrid Test" FontSize="24" BaselineAlignment="Center" />
+                        </TextBlock>
+                    </Button>
                 </StackPanel>
             </Border>
         </StackPanel>
