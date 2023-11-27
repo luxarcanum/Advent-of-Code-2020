@@ -1,6 +1,7 @@
 ﻿using MVVMDemo.Models;
 using Newtonsoft.Json;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.IO;
 using System.Windows.Input;
 
@@ -16,6 +17,12 @@ namespace MVVMDemo.ViewModels
         private ObservableCollection<StudentResults> _studentsImported;
         public ObservableCollection<StudentResults> StudentsImported { get => _studentsImported; set => SetProperty(ref _studentsImported, value); }
 
+        private DataTable _testdDataTable;
+        public DataTable TestdDataTable { get => _testdDataTable; set => SetProperty(ref _testdDataTable, value); }
+        
+        private DataRowView _selectedRecord;
+        public DataRowView SelectedRecord { get => _selectedRecord; set => SetProperty(ref _selectedRecord, value); }
+
         public Student SelectedStudent { get; set; }
         public string FilePathName = @"D:\Users\U.6074887\Outputs\students.json";
         #endregion
@@ -24,6 +31,7 @@ namespace MVVMDemo.ViewModels
         public ICommand DelStudents { get; set; }
         public ICommand ExpStudents { get; set; }
         public ICommand ImpStudents { get; set; }
+        public ICommand SelectRecordCommand { get; set; }
         #endregion
 
         #region Constructor
@@ -31,6 +39,7 @@ namespace MVVMDemo.ViewModels
         {
             LoadCommands();
             LoadStudents();
+            LoadDataTable();
         }
         #endregion
 
@@ -40,7 +49,31 @@ namespace MVVMDemo.ViewModels
             DelStudents = new RelayCommand(OnDelete, CanDelete);
             ExpStudents = new RelayCommand(ExportStudents);
             ImpStudents = new RelayCommand(ImportStudents);
+            SelectRecordCommand = new RelayCommand(SelectRecord);
         }
+
+
+        public void SelectRecord()
+        {
+            var temp = SelectedRecord;
+            //DataRow row = temp.Rows[0];
+            string rowValue = temp["Marks"].ToString();
+        }
+
+        public void LoadDataTable()
+        {
+            DataTable dt = new DataTable();
+            dt.Clear();
+            dt.Columns.Add("Name");
+            dt.Columns.Add("Marks");
+
+            dt.Rows.Add(new object[] { "Pawel", 100 });
+            dt.Rows.Add(new object[] { "Bob", 200 });
+            dt.Rows.Add(new object[] { "Colin", 300 });
+
+            TestdDataTable = dt;
+        }
+
 
         public void LoadStudents()
         {

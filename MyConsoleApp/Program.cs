@@ -8,6 +8,8 @@ namespace MyConsoleApp
         {
             Console.WriteLine("Hello World! \r\n");
 
+            Test.RunTest();
+
             //Advent2015.Advent01.Day01();
             //Advent2015.Advent02.Day02();
             //Advent2015.Advent03.Day03();
@@ -20,7 +22,7 @@ namespace MyConsoleApp
             //Advent2015.Advent12.Day12();
             //Advent2015.Advent14.Day14();
             //Advent2015.Advent15.Day15();
-            Advent2015.Advent16.Day16();
+            //Advent2015.Advent16.Day16();
             //Advent2020.Day01_Expenses.Day01();
             //Advent2020.Day02_Passwords.Day02();
             //Advent2020.Day03_Tobbogan.Day03();

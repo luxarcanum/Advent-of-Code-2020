@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:MVVMDemo.Views"
              xmlns:viewModel = "clr-namespace:MVVMDemo.ViewModels"
              xmlns:data = "clr-namespace:MVVMDemo.Models" 
@@ -16,8 +17,69 @@
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="0">
+
+            <DataGrid ItemsSource="{Binding TestdDataTable}"
+                      SelectedItem="{Binding SelectedRecord}"
+
+                      SelectionUnit="FullRow"
+                      AutoGenerateColumns="true"
+                       Width="500"
+                      MaxHeight="800">
+                <!--<DataGrid.Columns>
+                    <DataGridTextColumn Header="Office" Binding="{Binding Office}"/>
+                    <DataGridTextColumn Header="Group" Binding="{Binding Group}" />
+                    <DataGridTextColumn Header="Company" Binding="{Binding CompanyName}" />
+                    <DataGridTextColumn Header="UTR" Binding="{Binding Col_002}" />
+
+                    <DataGridTextColumn Header="APE" Binding="{Binding APE, Converter={StaticResource DateConverter},StringFormat=d}" />
+                    <DataGridTextColumn Header="Filing Date" Binding="{Binding FilingDate, Converter={StaticResource DateConverter},StringFormat=d}" />
+                    <DataGridTextColumn Header="Date Entered" Binding="{Binding Col_012, Converter={StaticResource DateConverter},StringFormat=d}" />
+
+                    <DataGridTextColumn Header="G-Form Failure" Binding="{Binding Col_070}" />
+                    <DataGridTextColumn Header="Gross RDEC (box L15)" Binding="{Binding Col_022, Converter={StaticResource CurrencyConverter}}" />
+                    <DataGridTextColumn Header="Is there a step 2 or 4-6 Set-Off?" Binding="{Binding Col_059}" />
+                    <DataGridTextColumn Header="Step 7 (box 880)" Binding="{Binding Col_019, Converter={StaticResource CurrencyConverter}}" />
+
+                    <DataGridTextColumn Header="Processing Count in Days" Binding="{Binding Col_016}" />
+                    <DataGridTextColumn Header="Processing Officer" Binding="{Binding Col_048}" />
+                    <DataGridTextColumn Header="Processing Stage" Binding="{Binding Col_050}" />
+
+                </DataGrid.Columns>-->
+
+                <!--Selected Cells Changed Interaction Trigger-->
+                <!--<i:Interaction.Triggers>
+                    -->
+                <!--<i:EventTrigger EventName="PreviewMouseLeftButtonDown">
+                        <i:InvokeCommandAction Command="{Binding SelectRecordCommand}" />
+                    </i:EventTrigger>-->
+                <!--
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding SelectRecordCommand}" />
+                    </i:EventTrigger>
+                    -->
+                <!--<i:EventTrigger EventName="PreviewKeyDown">
+                        <i:InvokeCommandAction Command="{Binding SelectRecordCommand}" CommandParameter="obj" />
+                    </i:EventTrigger>-->
+                <!--
+                </i:Interaction.Triggers>-->
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                        <i:InvokeCommandAction Command="{Binding SelectRecordCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DataGrid>
+
+
+        </StackPanel>
+
+
+
+        <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="1">
+
             <ListView ItemsSource = "{Binding Students}" 
                      SelectedItem = "{Binding SelectedStudent}">
                 <ListView.View>
@@ -95,7 +157,7 @@
             </StackPanel>
 
         </StackPanel>
-        <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="1">
+        <StackPanel Orientation = "Horizontal" Height="300" Grid.Row="2">
             <ListView ItemsSource = "{Binding StudentsImported}" >
                 <ListView.View>
                     <GridView>
