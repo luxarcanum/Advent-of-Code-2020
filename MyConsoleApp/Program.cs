@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyConsoleApp.Advent2023;
+using System;
 
 namespace MyConsoleApp
 {
@@ -8,7 +9,12 @@ namespace MyConsoleApp
         {
             Console.WriteLine("Hello World! \r\n");
 
-            Test.RunTest();
+            //Day01_Trebuchet.Day01();
+            //Day02_Cubes.Day02();
+            //Day03_Parts.Day03();
+            Day04_ScratchCards.Day04();
+
+            //Test.RunTest();
 
             //Advent2015.Advent01.Day01();
             //Advent2015.Advent02.Day02();

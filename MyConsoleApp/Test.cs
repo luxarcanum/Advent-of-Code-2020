@@ -39,7 +39,7 @@ namespace MyConsoleApp
             {
                 Console.WriteLine("Id: {0} - Name: {1} - Registered: {2} - IsActive: {3}", user.Id, user.Name, user.Registered, user.IsActive);
             }
-                       
+
             sw.Stop();
             Console.WriteLine("Elapsed: {0}", sw.Elapsed);
         }
